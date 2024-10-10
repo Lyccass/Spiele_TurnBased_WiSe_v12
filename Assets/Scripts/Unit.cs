@@ -6,7 +6,7 @@ public class Unit : MonoBehaviour
 {
 
 [SerializeField]float rotateSpeed = 10f;
-    [SerializeField ]private Animator unitAnimator;
+    [SerializeField]private Animator unitAnimator;
     private Vector3 targetPosition;
     private void Awake() {
         targetPosition = transform.position;
