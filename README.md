@@ -6,10 +6,18 @@ Also basic explanations of what is happening where can be found in here.
 
 //Done
 Movement and election of active character fixxed some movement buggs
+grid is working, object recognistion is also there
 
 //next
-grid based walking and ground
+Grid-based walking
+camera
+out of bound check
 
 //known bugs
+out of bound walking causes the game to crash - cause found will be fixed tomorrow
+one in 100 there seems to be a problem with the character selection - unkown cause
 
-//todos
+//else
+UI
+Enemy pathfinding
+Skills
