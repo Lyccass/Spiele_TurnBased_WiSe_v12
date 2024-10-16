@@ -7,6 +7,9 @@ public class LevelGrid : MonoBehaviour
     [SerializeField]private Transform gridDebugObjectPrefab;
      public static LevelGrid Instance{get; private set;}
     private GridSystem gridSystem;
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+
     private void Awake() 
     {
         if(Instance != null){
@@ -15,7 +18,7 @@ public class LevelGrid : MonoBehaviour
         return;
     }
      Instance = this;
-        gridSystem = new GridSystem(40,40,2f);
+        gridSystem = new GridSystem(width,height,2f);
         gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
     }
 
