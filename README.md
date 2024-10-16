@@ -7,11 +7,12 @@ Also basic explanations of what is happening where can be found in here.
 //Done
 Movement and election of active character fixxed some movement buggs
 grid is working, object recognistion is also there
+camera
 
 //next
 Grid-based walking
-camera
 out of bound check
+actionBar
 
 //known bugs
 out of bound walking causes the game to crash - cause found will be fixed tomorrow
