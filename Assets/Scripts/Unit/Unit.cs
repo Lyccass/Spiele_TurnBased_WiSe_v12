@@ -7,6 +7,7 @@ public class Unit : MonoBehaviour
 
 [SerializeField]float rotateSpeed = 10f;
     [SerializeField]private Animator unitAnimator;
+    [SerializeField]private float speed = 5f;
     private Vector3 targetPosition;
     private GridPosition gridPosition;
     private void Awake() {
@@ -46,6 +47,11 @@ public class Unit : MonoBehaviour
             LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
             gridPosition = newGridPosition;
         }
+    }
+
+     public float GetSpeed()
+    {
+        return speed;
     }
 
     public void Move(Vector3 newTargetPosition)  
