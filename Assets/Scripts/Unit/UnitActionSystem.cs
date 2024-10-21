@@ -26,9 +26,14 @@ public class UnitActionSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if(TryHandleUnitSelection()) return;
-            Vector3 newTargetPosition = MouseWorld.GetPosition();
-            //Debug.Log("Target position: " + newTargetPosition);  
-            selectedUnit.Move(newTargetPosition);
+           
+            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
+
+            if(selectedUnit.GetMoveAction().IsValidActionGridPosition(mouseGridPosition))
+            {
+                selectedUnit.GetMoveAction().Move(mouseGridPosition);
+            }
+
         }
    }
 
