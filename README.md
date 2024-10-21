@@ -22,3 +22,4 @@ one in 100 there seems to be a problem with the character selection - unkown cau
 UI
 Enemy pathfinding
 Skills
+Snap camera to player on pressing the chraceter image left side of screen
