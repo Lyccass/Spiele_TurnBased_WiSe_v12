@@ -9,6 +9,7 @@ public class UnitActionSystem : MonoBehaviour
     public event EventHandler OnSelectedUnitChange;
    [SerializeField] private Unit selectedUnit;
    [SerializeField] private LayerMask unitsLayerMask;
+    private bool isBusy;    
 
 
    private void Awake()
@@ -23,14 +24,39 @@ public class UnitActionSystem : MonoBehaviour
 
    private void Update()
    {
+        if(isBusy)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if(TryHandleUnitSelection()) return;
-            Vector3 newTargetPosition = MouseWorld.GetPosition();
-            //Debug.Log("Target position: " + newTargetPosition);  
-            selectedUnit.Move(newTargetPosition);
+           
+            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
+
+            if(selectedUnit.GetMoveAction().IsValidActionGridPosition(mouseGridPosition))
+            {
+                SetBusy();
+                selectedUnit.GetMoveAction().Move(mouseGridPosition, ClearBusy);
+            }
+
+        }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            SetBusy();
+            selectedUnit.GetSpinAction().Spin(ClearBusy);   
         }
    }
+
+    private void SetBusy()
+    {
+        isBusy = true;
+    }
+    private void ClearBusy()
+    {
+        isBusy = false;
+    }
 
    private bool TryHandleUnitSelection()
    {

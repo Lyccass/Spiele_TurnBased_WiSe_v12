@@ -5,14 +5,16 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
 
-[SerializeField]float rotateSpeed = 10f;
-    [SerializeField]private Animator unitAnimator;
-    private Vector3 targetPosition;
     private GridPosition gridPosition;
-    private void Awake() {
-        targetPosition = transform.position;
+    private MoveAction moveAction;
+    private SpinAction spinAction;
+
+    private void Awake()
+    {
+        moveAction = GetComponent<MoveAction>();
+        spinAction = GetComponent<SpinAction>();
     }
-    private bool isMoving = false; // To keep track of movement state
+
 
     private void Start()
     {
@@ -21,23 +23,6 @@ public class Unit : MonoBehaviour
     }
     private void Update() 
     {
-        float stoppingDistance = 0.1f;
-        if (isMoving && Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
-        {
-            // Move toward target position
-            Vector3 moveDirection = (targetPosition - transform.position).normalized;
-            float moveSpeed = 4f;
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
-            //smoothing the rotation
-            
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime*rotateSpeed);
-            unitAnimator.SetBool("isWalking",true);
-        }
-        else
-        {
-            unitAnimator.SetBool("isWalking",false);
-            isMoving = false; // Stop moving when close enough
-        }
         //own struct has the comparsion functions in it otherwise this would not work
          GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         if(newGridPosition!= gridPosition)
@@ -48,9 +33,21 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public void Move(Vector3 newTargetPosition)  
+    public MoveAction GetMoveAction()
     {
-        this.targetPosition = newTargetPosition;
-        isMoving = true;  // Start moving
+        return moveAction;
     }
+
+     public SpinAction GetSpinAction()
+    {
+        return spinAction;
+    }
+
+    public GridPosition GetGridPosition()
+    {
+        return gridPosition;
+    }
+
+   
+   
 }

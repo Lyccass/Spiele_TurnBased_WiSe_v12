@@ -8,17 +8,18 @@ Also basic explanations of what is happening where can be found in here.
 Movement and election of active character fixxed some movement buggs
 grid is working, object recognistion is also there
 camera
+Grid-based walking
 
 //next
-Grid-based walking
-out of bound check
+Pathfinding
+GridVisualization
 actionBar
+refractoring of code snippets reduction of code repetition
 
 //known bugs
-out of bound walking causes the game to crash - cause found will be fixed tomorrow
-one in 100 there seems to be a problem with the character selection - unkown cause
 
 //else
 UI
 Enemy pathfinding
 Skills
+Snap camera to player on pressing the chraceter image left side of screen

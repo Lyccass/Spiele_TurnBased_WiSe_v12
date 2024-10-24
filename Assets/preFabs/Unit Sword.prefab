@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5133447665124704405}
   - component: {fileID: 5346639918755459091}
   - component: {fileID: 4643333010724226411}
+  - component: {fileID: 2279258987084242374}
+  - component: {fileID: 5994361660759164970}
   m_Layer: 7
   m_Name: Unit Sword
   m_TagString: Untagged
@@ -47,8 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9eac0427190984b80167a9b1a93cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 10
-  unitAnimator: {fileID: 3774596163182085929}
 --- !u!65 &4643333010724226411
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70,6 +70,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.44233057, y: 1.7852039, z: 1}
   m_Center: {x: 0.019294694, y: 0.882398, z: 0}
+--- !u!114 &2279258987084242374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452766894031091776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6631f91fa867add408062d96175e3cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitAnimator: {fileID: 3774596163182085929}
+  rotateSpeed: 10
+  maxMoveDistance: 1
+--- !u!114 &5994361660759164970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452766894031091776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703fe339f80754d458b71ddb2a549646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1010977058299753444
 GameObject:
   m_ObjectHideFlags: 0
