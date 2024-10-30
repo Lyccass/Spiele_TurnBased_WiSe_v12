@@ -100,4 +100,9 @@ GridPosition unitGridPosition = unit.GetGridPosition();
     return validGridPositionList;
 }
 
+    public override string GetActionName()
+    {
+       return "Move";
+    }
+
 }

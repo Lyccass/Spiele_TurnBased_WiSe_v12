@@ -9,17 +9,18 @@ Movement and election of active character fixxed some movement buggs
 grid is working, object recognistion is also there
 camera
 Grid-based walking
+GridVisualization
+Different Actions
+Added a action BaseClass
 
 //next
 Pathfinding
-GridVisualization
-actionBar
+UI for ActionSelection
 refractoring of code snippets reduction of code repetition
 
 //known bugs
 
 //else
-UI
 Enemy pathfinding
 Skills
 Snap camera to player on pressing the chraceter image left side of screen
