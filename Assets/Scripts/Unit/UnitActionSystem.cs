@@ -11,6 +11,7 @@ public class UnitActionSystem : MonoBehaviour
     public event EventHandler OnSelectedUnitChange;
     public event EventHandler OnSelectedActionChange;
     public event EventHandler<bool> OnBusyChange;
+    public event EventHandler OnActionStarted;
 
 
 
@@ -56,20 +57,30 @@ public class UnitActionSystem : MonoBehaviour
  
    }
 
-   private void HandleSelectedAction()
-   {
-      if (Input.GetMouseButtonDown(0))
-      {
-          GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
-          if(selectedAction.IsValidActionGridPosition(mouseGridPosition))
+private void HandleSelectedAction()
+{
+    if (Input.GetMouseButtonDown(0))
+    {
+        GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
 
-          {
-            SetBusy();
-            selectedAction.TakeAction(mouseGridPosition, ClearBusy);
-          }
-      }
+        if(!selectedAction.IsValidActionGridPosition(mouseGridPosition))
+        {
+            return;
+        }
 
-   }
+        // Check if action points can be spent
+        if(!selectedUnit.TrySpendActionPointsToTakeAction(selectedAction))
+        {
+            Debug.Log("Not enough action points!");
+            return;
+        }
+
+        SetBusy();
+        selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+        OnActionStarted?.Invoke(this, EventArgs.Empty);
+    }
+}
+
 
     private void SetBusy()
     {
