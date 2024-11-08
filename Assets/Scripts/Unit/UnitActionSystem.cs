@@ -43,6 +43,10 @@ public class UnitActionSystem : MonoBehaviour
         {
             return;
         }
+        if(!TurnSystem.Instance.IsPlayerTurn())
+        {
+            return;
+        }
 
         if(EventSystem.current.IsPointerOverGameObject())
         {
@@ -103,6 +107,11 @@ private void HandleSelectedAction()
             {
                 if(unit == selectedUnit)
                 {
+                    return false;
+                }
+                if(unit.IsEnemy())
+                {
+                    //Check if unit is enemy
                     return false;
                 }
                 SetSelectedUnit(unit);  // Use SetSelectedUnit to trigger the visual update

@@ -1,0 +1,137 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RangedAction : BaseAction
+{
+      private enum State
+    {
+        Aming,
+        Shooting,
+        Cooldown,
+    }
+    private int maxRangedDistance = 7;
+    private float stateTimer;
+    private State state;
+    private Unit targetUnit;
+    private bool canShootBullet;
+
+
+     private void Update() 
+    {
+        if(!isActive)
+        {
+            return;
+        }
+    
+        stateTimer -= Time.deltaTime;
+        switch(state)
+        {
+            case State.Aming:
+                float rotateSpeed = 10f;
+                Vector3 aimDir = (targetUnit.GetWordPosition() - unit.GetWordPosition()).normalized;
+                transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime*rotateSpeed);
+                break;
+            case State.Shooting:
+                if(canShootBullet)
+                {
+                    Shoot();
+                    canShootBullet = false;
+                }
+                break;
+            case State.Cooldown:
+                break;
+        }
+        
+           if(stateTimer <= 0f)
+                {
+                    NextState();
+                }
+    }
+
+private void NextState()
+{
+    switch (state)
+    {
+        case State.Aming:
+            state = State.Shooting;
+            float shootingStateTime = 0.1f;
+            stateTimer = shootingStateTime;
+            break;
+        case State.Shooting:
+            state = State.Cooldown; // Fix: Transition to Cooldown
+            float coolOffStateTime = 0.5f;
+            stateTimer = coolOffStateTime;
+            break;
+        case State.Cooldown:
+            ActionComplete();
+            break;
+    }
+}
+
+
+private void Shoot()
+{
+    targetUnit.Damage();
+}
+public override string GetActionName()
+    {
+        return "Ranged";
+    }
+
+public override List<GridPosition> GetValidGridPositionList()
+    {
+         List<GridPosition> validGridPositionList = new List<GridPosition>();
+
+GridPosition unitGridPosition = unit.GetGridPosition();
+
+    for (int x= -maxRangedDistance; x <= maxRangedDistance; x++){
+        for (int z= -maxRangedDistance; z <= maxRangedDistance; z++)
+        {
+            GridPosition offsetGridPosition = new GridPosition(x,z);
+            GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
+            if(!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
+            {
+                continue;
+            }
+            //design choice to limit range more circluar
+            int testDistance = Mathf.Abs(x)+ Mathf.Abs(z);
+            if(testDistance > maxRangedDistance)
+            {
+                continue;
+            }
+
+            //GridPosition is empty no unit
+            if(!LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition))
+            {
+                continue;
+            }
+            Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(testGridPosition);
+            if(targetUnit.IsEnemy() == unit.IsEnemy())
+            {
+            //test if both units are on opposite sides
+              continue; 
+            }
+
+            validGridPositionList.Add(testGridPosition);
+
+        }
+    }
+    return validGridPositionList;
+    }
+
+    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
+    {
+        ActionStart(onActionComplete);
+
+        targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
+
+        state = State.Aming;
+        float aimingStateTime = 1f;
+        stateTimer = aimingStateTime;
+
+        canShootBullet = true;
+    
+    }
+}
