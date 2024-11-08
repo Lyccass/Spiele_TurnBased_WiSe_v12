@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class Unit : MonoBehaviour
 
     public static event EventHandler OnAnyActionPointChange;
 
+
+    [SerializeField] private bool isEnemy;  
     private GridPosition gridPosition;
     private MoveAction moveAction;
     private SpinAction spinAction;
@@ -58,6 +61,11 @@ public class Unit : MonoBehaviour
         return gridPosition;
     }
 
+    public UnityEngine.Vector3 GetWordPosition()
+    {
+        return transform.position;
+    }
+
     public BaseAction[] GetBaseActionArray()
     {
         return baseActionArray;
@@ -100,7 +108,22 @@ public bool TrySpendActionPointsToTakeAction(BaseAction baseAction)
    
    private void TurnSystem_OnTurnChange(object sender, EventArgs e)
    {
-        actionPoints = MaxActionPoints;
-        OnAnyActionPointChange?.Invoke(this, EventArgs.Empty);
+     if ((IsEnemy() && TurnSystem.Instance.IsPlayerTurn()) || 
+             (!IsEnemy() && TurnSystem.Instance.IsPlayerTurn()))
+{
+    actionPoints = MaxActionPoints;
+    OnAnyActionPointChange?.Invoke(this, EventArgs.Empty);
+}
+
+   }
+
+   public bool IsEnemy()
+   {
+    return isEnemy;
+   }
+
+   public void Damage()
+   {
+    Debug.Log(transform + " damaged");
    }
 }
