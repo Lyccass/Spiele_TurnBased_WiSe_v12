@@ -12,11 +12,20 @@ Grid-based walking
 GridVisualization
 Different Actions
 Added a action BaseClass
+Different actions
+healtsystem with unit death
+actionpoints
+turnbased system
+ragdolls
 
 //next
 Pathfinding
-UI for ActionSelection
-refractoring of code snippets reduction of code repetition
+Improving of the grid
+more actions
+
+// else
+Need the models
+Better UI
 
 //known bugs
 
