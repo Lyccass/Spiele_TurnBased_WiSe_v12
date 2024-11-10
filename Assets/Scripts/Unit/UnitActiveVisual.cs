@@ -39,5 +39,10 @@ public class UnitActiveVisual : MonoBehaviour
         }
    }
 
+   private void OnDestroy() 
+   {
+      UnitActionSystem.Instance.OnSelectedUnitChange -= UnitActionSystem_OnSelectedUnitChanged;
+   }
+
 }
 

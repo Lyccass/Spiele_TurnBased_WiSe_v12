@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class RangedAction : BaseAction
 {
+    public event EventHandler<OnShootEventArgs> OnShoot;
+    public class OnShootEventArgs : EventArgs
+    {
+        public Unit targetUnit;
+        public Unit shootingUnit;
+    }
+
       private enum State
     {
         Aming,
@@ -16,6 +23,9 @@ public class RangedAction : BaseAction
     private State state;
     private Unit targetUnit;
     private bool canShootBullet;
+    [SerializeField] private int minDamage = 3;
+    [SerializeField] private int maxDamage = 6;
+
 
 
      private void Update() 
@@ -73,8 +83,16 @@ private void NextState()
 
 private void Shoot()
 {
-    targetUnit.Damage();
+    OnShoot?.Invoke(this, new OnShootEventArgs
+    {
+        targetUnit = targetUnit,
+        shootingUnit = unit
+    });
+
+    int randomDamage = UnityEngine.Random.Range(minDamage, maxDamage);
+    targetUnit.Damage(randomDamage);
 }
+
 public override string GetActionName()
     {
         return "Ranged";
@@ -123,7 +141,7 @@ GridPosition unitGridPosition = unit.GetGridPosition();
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        ActionStart(onActionComplete);
+      
 
         targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
 
@@ -132,6 +150,13 @@ GridPosition unitGridPosition = unit.GetGridPosition();
         stateTimer = aimingStateTime;
 
         canShootBullet = true;
+
+        ActionStart(onActionComplete);
     
+    }
+
+    public Unit GetTargetUnit()
+    {
+        return targetUnit;
     }
 }
