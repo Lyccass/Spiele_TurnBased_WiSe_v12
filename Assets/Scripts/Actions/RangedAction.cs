@@ -97,12 +97,17 @@ public override string GetActionName()
     {
         return "Ranged";
     }
-
 public override List<GridPosition> GetValidGridPositionList()
+{
+    GridPosition unitGridPosition = unit.GetGridPosition();
+    return GetValidGridPositionList(unitGridPosition);
+
+}
+public List<GridPosition> GetValidGridPositionList(GridPosition unitGridPosition)
     {
          List<GridPosition> validGridPositionList = new List<GridPosition>();
 
-GridPosition unitGridPosition = unit.GetGridPosition();
+
 
     for (int x= -maxRangedDistance; x <= maxRangedDistance; x++){
         for (int z= -maxRangedDistance; z <= maxRangedDistance; z++)
@@ -163,5 +168,22 @@ GridPosition unitGridPosition = unit.GetGridPosition();
     public int GetMaxRangeDistance()
     {
         return maxRangedDistance;
+    }
+
+    
+    public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
+    {
+        Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
+
+        return new EnemyAIAction{
+            gridPosition = gridPosition,
+            actionValue = 100 + Mathf.RoundToInt((1- targetUnit.GetHealthNomalized()) * 100f),
+        };
+    }
+
+    public int GetTargetCountAtPosition(GridPosition gridPosition)
+    {
+       return GetValidGridPositionList(gridPosition).Count;
+
     }
 }

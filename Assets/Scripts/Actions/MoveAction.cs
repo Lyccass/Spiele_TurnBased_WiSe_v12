@@ -103,4 +103,14 @@ GridPosition unitGridPosition = unit.GetGridPosition();
        return "Move";
     }
 
+    
+    public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
+    {
+        int targetCountAtGridPosition = unit.GetRangedAction().GetTargetCountAtPosition(gridPosition);
+        return new EnemyAIAction{
+            gridPosition = gridPosition,
+            actionValue = targetCountAtGridPosition * 10,
+        };
+    }
+
 }

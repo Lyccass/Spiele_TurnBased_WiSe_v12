@@ -100,23 +100,42 @@ public class EnemyAI : MonoBehaviour
 
     private bool TryTakeEnemyAIAction(Unit enemyUnit, Action OnEnemyAIActionComplete)
     {
-        SpinAction spinAction = enemyUnit.GetSpinAction();
-        GridPosition actionGridPosition = enemyUnit.GetGridPosition();
+        EnemyAIAction bestEnemyAIAction = null;
+        BaseAction bestBaseAction = null;
+       foreach(BaseAction baseAction in enemyUnit.GetBaseActionArray())
+       {
+        if(!enemyUnit.CanSpendActionPointsToTakeAction(baseAction))
+        {
+            //Enemy cannot afford this action
+            continue;
+        }
+        if(bestEnemyAIAction == null)
+        {
+            bestEnemyAIAction = baseAction.GetBestEnemyAIAction();
+            bestBaseAction = baseAction;
+        }
+        else
+        {
+            EnemyAIAction testEnemyAIAction = baseAction.GetBestEnemyAIAction();
+            if(testEnemyAIAction != null && testEnemyAIAction.actionValue > bestEnemyAIAction.actionValue)
+            {
+            bestEnemyAIAction = testEnemyAIAction;
+            bestBaseAction = baseAction;
+            }
+        }
+        
+       }
 
-        if (!spinAction.IsValidActionGridPosition(actionGridPosition))
+    	if(bestEnemyAIAction != null && enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction))
+        {
+            bestBaseAction.TakeAction(bestEnemyAIAction.gridPosition, OnEnemyAIActionComplete);
+            return true;
+        }
+        else
         {
             return false;
         }
 
-        // Check if action points can be spent
-        if (!enemyUnit.TrySpendActionPointsToTakeAction(spinAction))
-        {
-            Debug.Log("Not enough action points!");
-            return false;
-        }
-
-        Debug.Log("Spin Action taken!");
-        spinAction.TakeAction(actionGridPosition, OnEnemyAIActionComplete);
-        return true;
+    
     }
 }
