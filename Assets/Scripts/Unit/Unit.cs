@@ -9,6 +9,9 @@ public class Unit : MonoBehaviour
 {
 
     public static event EventHandler OnAnyActionPointChange;
+    public static event EventHandler OnAnyUnitSpawned;
+    public static event EventHandler OnAnyUnitDead;
+    
 
 
     [SerializeField] private bool isEnemy;  
@@ -36,6 +39,8 @@ public class Unit : MonoBehaviour
         LevelGrid.Instance.AddUnitAtGridPosition(gridPosition, this);
         TurnSystem.Instance.OnTurnChange += TurnSystem_OnTurnChange;
         healthSystem.OnDead += HealthSystem_OnDead;
+
+        OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
     }
     private void Update() 
     {
@@ -43,9 +48,10 @@ public class Unit : MonoBehaviour
          GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         if(newGridPosition!= gridPosition)
         {
-            //Unit Changed Gridposition
-            LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
+            //Unit Changed Gridposition - order is important cause eventhandling
+            GridPosition oldGridPosition = gridPosition;
             gridPosition = newGridPosition;
+            LevelGrid.Instance.UnitMovedGridPosition(this, oldGridPosition, newGridPosition);
         }
     }
 
@@ -134,5 +140,6 @@ public bool TrySpendActionPointsToTakeAction(BaseAction baseAction)
    {
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
         Destroy(gameObject);
+        OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
    }
 }

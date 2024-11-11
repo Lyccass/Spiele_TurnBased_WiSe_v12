@@ -18,7 +18,7 @@ public class RangedAction : BaseAction
         Shooting,
         Cooldown,
     }
-    private int maxRangedDistance = 7;
+    [SerializeField] private int maxRangedDistance = 7;
     private float stateTimer;
     private State state;
     private Unit targetUnit;
@@ -158,5 +158,10 @@ GridPosition unitGridPosition = unit.GetGridPosition();
     public Unit GetTargetUnit()
     {
         return targetUnit;
+    }
+
+    public int GetMaxRangeDistance()
+    {
+        return maxRangedDistance;
     }
 }
