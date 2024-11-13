@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class RangedAction : BaseAction
@@ -18,7 +20,9 @@ public class RangedAction : BaseAction
         Shooting,
         Cooldown,
     }
-    private int maxRangedDistance = 7;
+    [SerializeField] private LayerMask obstacleLayerMask;
+
+    [SerializeField] private int maxRangedDistance = 7;
     private float stateTimer;
     private State state;
     private Unit targetUnit;
@@ -40,8 +44,8 @@ public class RangedAction : BaseAction
         {
             case State.Aming:
                 float rotateSpeed = 10f;
-                Vector3 aimDir = (targetUnit.GetWordPosition() - unit.GetWordPosition()).normalized;
-                transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime*rotateSpeed);
+                UnityEngine.Vector3 aimDir = (targetUnit.GetWordPosition() - unit.GetWordPosition()).normalized;
+                transform.forward = UnityEngine.Vector3.Lerp(transform.forward, aimDir, Time.deltaTime*rotateSpeed);
                 break;
             case State.Shooting:
                 if(canShootBullet)
@@ -97,12 +101,17 @@ public override string GetActionName()
     {
         return "Ranged";
     }
-
 public override List<GridPosition> GetValidGridPositionList()
+{
+    GridPosition unitGridPosition = unit.GetGridPosition();
+    return GetValidGridPositionList(unitGridPosition);
+
+}
+public List<GridPosition> GetValidGridPositionList(GridPosition unitGridPosition)
     {
          List<GridPosition> validGridPositionList = new List<GridPosition>();
 
-GridPosition unitGridPosition = unit.GetGridPosition();
+
 
     for (int x= -maxRangedDistance; x <= maxRangedDistance; x++){
         for (int z= -maxRangedDistance; z <= maxRangedDistance; z++)
@@ -132,6 +141,23 @@ GridPosition unitGridPosition = unit.GetGridPosition();
               continue; 
             }
 
+            UnityEngine.Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPositionn(unitGridPosition);
+
+            UnityEngine.Vector3 rangedDir = (targetUnit.GetWordPosition() - unitWorldPosition).normalized;
+            float unitShoulderHeight =1.7f;
+            if(
+            Physics.Raycast(
+                unitWorldPosition+UnityEngine.Vector3.up*unitShoulderHeight,
+                rangedDir,
+                UnityEngine.Vector3.Distance(unitWorldPosition, targetUnit.GetWordPosition()),
+                obstacleLayerMask))
+            {
+
+                //blocked by obstacle
+                continue;
+
+            }
+
             validGridPositionList.Add(testGridPosition);
 
         }
@@ -158,5 +184,27 @@ GridPosition unitGridPosition = unit.GetGridPosition();
     public Unit GetTargetUnit()
     {
         return targetUnit;
+    }
+
+    public int GetMaxRangeDistance()
+    {
+        return maxRangedDistance;
+    }
+
+    
+    public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
+    {
+        Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
+
+        return new EnemyAIAction{
+            gridPosition = gridPosition,
+            actionValue = 100 + Mathf.RoundToInt((1- targetUnit.GetHealthNomalized()) * 100f),
+        };
+    }
+
+    public int GetTargetCountAtPosition(GridPosition gridPosition)
+    {
+       return GetValidGridPositionList(gridPosition).Count;
+
     }
 }

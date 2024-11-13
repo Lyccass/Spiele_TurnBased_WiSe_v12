@@ -146,6 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5038afbe1d983408db8e3c12372f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  maxRangedDistance: 7
   minDamage: 3
   maxDamage: 6
 --- !u!114 &2327177680439709333
