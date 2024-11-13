@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
     private float timer;
     private State state;
     private int currentEnemyIndex;
+  
 
     private void Awake()
     {
@@ -98,44 +99,40 @@ public class EnemyAI : MonoBehaviour
         return false;
     }
 
-    private bool TryTakeEnemyAIAction(Unit enemyUnit, Action OnEnemyAIActionComplete)
+   private bool TryTakeEnemyAIAction(Unit enemyUnit, Action OnEnemyAIActionComplete)
+{
+    EnemyAIAction bestEnemyAIAction = null;
+    BaseAction bestBaseAction = null;
+
+    foreach (BaseAction baseAction in enemyUnit.GetBaseActionArray())
     {
-        EnemyAIAction bestEnemyAIAction = null;
-        BaseAction bestBaseAction = null;
-       foreach(BaseAction baseAction in enemyUnit.GetBaseActionArray())
-       {
-        if(!enemyUnit.CanSpendActionPointsToTakeAction(baseAction))
+        if (!enemyUnit.CanSpendActionPointsToTakeAction(baseAction))
         {
-            //Enemy cannot afford this action
             continue;
         }
-        if(bestEnemyAIAction == null)
+
+        EnemyAIAction testEnemyAIAction = baseAction.GetBestEnemyAIAction();
+        if (testEnemyAIAction != null)
         {
-            bestEnemyAIAction = baseAction.GetBestEnemyAIAction();
-            bestBaseAction = baseAction;
-        }
-        else
-        {
-            EnemyAIAction testEnemyAIAction = baseAction.GetBestEnemyAIAction();
-            if(testEnemyAIAction != null && testEnemyAIAction.actionValue > bestEnemyAIAction.actionValue)
+            if (bestEnemyAIAction == null || testEnemyAIAction.actionValue > bestEnemyAIAction.actionValue)
             {
-            bestEnemyAIAction = testEnemyAIAction;
-            bestBaseAction = baseAction;
+                bestEnemyAIAction = testEnemyAIAction;
+                bestBaseAction = baseAction;
             }
         }
-        
-       }
+    }
 
-    	if(bestEnemyAIAction != null && enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction))
+    // Even if the best action doesn't get us all the way to the player, take it if it brings us closer
+    if (bestEnemyAIAction != null)
+    {
+        // Attempt to spend action points and execute the action
+        if (enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction))
         {
             bestBaseAction.TakeAction(bestEnemyAIAction.gridPosition, OnEnemyAIActionComplete);
             return true;
         }
-        else
-        {
-            return false;
-        }
-
-    
     }
+
+    return false;
+}
 }

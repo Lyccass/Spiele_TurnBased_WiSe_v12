@@ -127,7 +127,7 @@ private void HandleSelectedAction()
    private void SetSelectedUnit(Unit unit)
    {
     selectedUnit = unit;
-    SetSelecterdAction(unit.GetMoveAction());
+    SetSelecterdAction(unit.GetAction<MoveAction>());
     OnSelectedUnitChange?.Invoke(this, EventArgs.Empty);
    }
 

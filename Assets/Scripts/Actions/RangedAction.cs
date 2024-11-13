@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class RangedAction : BaseAction
@@ -18,6 +20,8 @@ public class RangedAction : BaseAction
         Shooting,
         Cooldown,
     }
+    [SerializeField] private LayerMask obstacleLayerMask;
+
     [SerializeField] private int maxRangedDistance = 7;
     private float stateTimer;
     private State state;
@@ -40,8 +44,8 @@ public class RangedAction : BaseAction
         {
             case State.Aming:
                 float rotateSpeed = 10f;
-                Vector3 aimDir = (targetUnit.GetWordPosition() - unit.GetWordPosition()).normalized;
-                transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime*rotateSpeed);
+                UnityEngine.Vector3 aimDir = (targetUnit.GetWordPosition() - unit.GetWordPosition()).normalized;
+                transform.forward = UnityEngine.Vector3.Lerp(transform.forward, aimDir, Time.deltaTime*rotateSpeed);
                 break;
             case State.Shooting:
                 if(canShootBullet)
@@ -135,6 +139,23 @@ public List<GridPosition> GetValidGridPositionList(GridPosition unitGridPosition
             {
             //test if both units are on opposite sides
               continue; 
+            }
+
+            UnityEngine.Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPositionn(unitGridPosition);
+
+            UnityEngine.Vector3 rangedDir = (targetUnit.GetWordPosition() - unitWorldPosition).normalized;
+            float unitShoulderHeight =1.7f;
+            if(
+            Physics.Raycast(
+                unitWorldPosition+UnityEngine.Vector3.up*unitShoulderHeight,
+                rangedDir,
+                UnityEngine.Vector3.Distance(unitWorldPosition, targetUnit.GetWordPosition()),
+                obstacleLayerMask))
+            {
+
+                //blocked by obstacle
+                continue;
+
             }
 
             validGridPositionList.Add(testGridPosition);
