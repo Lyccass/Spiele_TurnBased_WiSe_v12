@@ -193,14 +193,41 @@ public List<GridPosition> GetValidGridPositionList(GridPosition unitGridPosition
 
     
     public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
+{
+    Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
+    if (targetUnit == null)
     {
-        Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
-
-        return new EnemyAIAction{
-            gridPosition = gridPosition,
-            actionValue = 100 + Mathf.RoundToInt((1- targetUnit.GetHealthNomalized()) * 100f),
-        };
+        // If there's no unit at the target grid position, return null or apply a penalty
+        return null;
     }
+
+    // Calculate the action value based on the target's health
+    int actionValue = 100 + Mathf.RoundToInt((1 - targetUnit.GetHealthNomalized()) * 100f);
+
+    // Check if the enemy's line of sight is blocked by an obstacle
+    UnityEngine.Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPositionn(gridPosition);
+    UnityEngine.Vector3 targetWorldPosition = targetUnit.GetWordPosition();
+    UnityEngine.Vector3 rangedDir = (targetWorldPosition - unitWorldPosition).normalized;
+    float unitShoulderHeight = 1.7f; // Adjust this value as necessary for your game
+
+    // Perform a raycast to check for obstacles
+    if (Physics.Raycast(
+            unitWorldPosition + UnityEngine.Vector3.up * unitShoulderHeight,
+            rangedDir,
+            UnityEngine.Vector3.Distance(unitWorldPosition, targetWorldPosition),
+            obstacleLayerMask))
+    {
+        // If the shot is blocked by an obstacle, apply a penalty to the action value
+        actionValue = 0; // Adjust the penalty value as needed
+    }
+
+    return new EnemyAIAction
+    {
+        gridPosition = gridPosition,
+        actionValue = actionValue
+    };
+}
+
 
     public int GetTargetCountAtPosition(GridPosition gridPosition)
     {

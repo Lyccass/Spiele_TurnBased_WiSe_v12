@@ -5,6 +5,7 @@ Also basic explanations of what is happening where can be found in here.
 2022.3.49f1 -> unity vesion for the game
 
 //Done
+
 Movement and election of active character fixxed some movement buggs
 grid is working, object recognistion is also there
 camera
@@ -17,19 +18,24 @@ healtsystem with unit death
 actionpoints
 turnbased system
 ragdolls
-
-//next
 Pathfinding
 Improving of the grid
 more actions
+Skills
+
+//next
+
+Snapping to camera
+player order?
+Interaction - action
+
+...
 
 // else
-Need the models
-Better UI
+
+Destructable objects
 
 //known bugs
 
-//else
-Enemy pathfinding
-Skills
-Snap camera to player on pressing the chraceter image left side of screen
+Enemy Pathfinding is buggy at a certain distance
+When selected unit dies and an action is taken the game crashes
