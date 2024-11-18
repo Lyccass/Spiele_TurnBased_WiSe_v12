@@ -2,16 +2,25 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnitActionSystem : MonoBehaviour
 {
     public static UnitActionSystem Instance{get; private set;}
+
     public event EventHandler OnSelectedUnitChange;
+    public event EventHandler OnSelectedActionChange;
+    public event EventHandler<bool> OnBusyChange;
+    public event EventHandler OnActionStarted;
+
+
+
    [SerializeField] private Unit selectedUnit;
    [SerializeField] private LayerMask unitsLayerMask;
-   [SerializeField] private List<Unit> unitsList = new List<Unit>();
-    private int currentUnitIndex = 0;  //use this for showing UI whose turn it is
-    
+
+   private BaseAction selectedAction;
+    private bool isBusy;    
+
 
    private void Awake()
    {
@@ -23,62 +32,119 @@ public class UnitActionSystem : MonoBehaviour
      Instance = this;
    }
 
-    private void Start()
-    {
-        // Find all units in the scene and add them to the list
-        unitsList.AddRange(FindObjectsOfType<Unit>());
-
-        // Sort the list by speed in descending order (fastest to slowest)
-         unitsList.Sort((unitA, unitB) => unitB.GetSpeed().CompareTo(unitA.GetSpeed()));
-       
-        if (unitsList.Count > 0)
-        {
-            SetSelectedUnit(unitsList[currentUnitIndex]);
-        }
-    }
+   private void Start(){
+    SetSelectedUnit(selectedUnit);
+   }
 
    private void Update()
    {
-        if (Input.GetMouseButtonDown(0))
+
+        if(isBusy)
         {
-            
-            if (selectedUnit != null)
-            {
-            Vector3 newTargetPosition = MouseWorld.GetPosition();
-            //Debug.Log("Target position: " + newTargetPosition);  
-            selectedUnit.Move(newTargetPosition);
-            }
+            return;
         }
-        if (Input.GetMouseButtonDown(1))
+        if(!TurnSystem.Instance.IsPlayerTurn())
         {
-            SelectNextUnit(); // Move to the next unit's turn
+            return;
         }
+
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        if(TryHandleUnitSelection())
+        {
+            return;
+        }
+        HandleSelectedAction();
+
+ 
    }
 
-   
- private void SetSelectedUnit(Unit unit)
+private void HandleSelectedAction()
+{
+    if (Input.GetMouseButtonDown(0))
+    {
+        GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
+
+        if(!selectedAction.IsValidActionGridPosition(mouseGridPosition))
+        {
+            return;
+        }
+
+        // Check if action points can be spent
+        if(!selectedUnit.TrySpendActionPointsToTakeAction(selectedAction))
+        {
+            Debug.Log("Not enough action points!");
+            return;
+        }
+
+        SetBusy();
+        selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+        OnActionStarted?.Invoke(this, EventArgs.Empty);
+    }
+}
+
+
+    private void SetBusy()
+    {
+        isBusy = true;
+        OnBusyChange?.Invoke(this, isBusy);
+    }
+    private void ClearBusy()
+    {
+        isBusy = false;
+        OnBusyChange?.Invoke(this, isBusy);
+    }
+
+   private bool TryHandleUnitSelection()
+   {
+    if(Input.GetMouseButtonDown(0)){
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(  Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitsLayerMask))
+      {
+            if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
+            {
+                if(unit == selectedUnit)
+                {
+                    return false;
+                }
+                if(unit.IsEnemy())
+                {
+                    //Check if unit is enemy
+                    return false;
+                }
+                SetSelectedUnit(unit);  // Use SetSelectedUnit to trigger the visual update
+                return true;
+            }
+      }
+
+      };
+
+      return false;
+   }
+
+   private void SetSelectedUnit(Unit unit)
    {
     selectedUnit = unit;
+    SetSelecterdAction(unit.GetAction<MoveAction>());
     OnSelectedUnitChange?.Invoke(this, EventArgs.Empty);
    }
 
-public void SelectNextUnit()
-    {
-        currentUnitIndex++;
-
-        // If we reach the end of the list, loop back to the start
-        if (currentUnitIndex >= unitsList.Count)
-        {
-            currentUnitIndex = 0;
-        }
-
-        // Select the new unit
-        SetSelectedUnit(unitsList[currentUnitIndex]);
-    }
+   public void SetSelecterdAction(BaseAction baseAction)
+   {
+        selectedAction = baseAction;
+        OnSelectedActionChange?.Invoke(this, EventArgs.Empty);
+   }
 
    public Unit GetSelectedUnit()
    {
         return selectedUnit;
+   }
+
+   public BaseAction GetSelectedAction()
+   {
+    return selectedAction;
    }
 
 }

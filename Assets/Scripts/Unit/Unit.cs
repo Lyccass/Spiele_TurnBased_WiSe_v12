@@ -1,62 +1,145 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
 
-[SerializeField]float rotateSpeed = 10f;
-    [SerializeField]private Animator unitAnimator;
-    [SerializeField]private float speed = 5f;
-    private Vector3 targetPosition;
+    public static event EventHandler OnAnyActionPointChange;
+    public static event EventHandler OnAnyUnitSpawned;
+    public static event EventHandler OnAnyUnitDead;
+    [SerializeField] private bool isEnemy;  
+    private HealthSystem healthSystem;
     private GridPosition gridPosition;
-    private void Awake() {
-        targetPosition = transform.position;
+    [SerializeField] public int MaxActionPoints = 2;
+    private BaseAction[] baseActionArray;
+    private int actionPoints;
+
+    private void Awake()
+    {
+        healthSystem = GetComponent<HealthSystem>();
+        baseActionArray = GetComponents<BaseAction>();
+        actionPoints = MaxActionPoints;
     }
-    private bool isMoving = false; // To keep track of movement state
+
 
     private void Start()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         LevelGrid.Instance.AddUnitAtGridPosition(gridPosition, this);
+        TurnSystem.Instance.OnTurnChange += TurnSystem_OnTurnChange;
+        healthSystem.OnDead += HealthSystem_OnDead;
+
+        OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
     }
     private void Update() 
     {
-        float stoppingDistance = 0.1f;
-        if (isMoving && Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
-        {
-            // Move toward target position
-            Vector3 moveDirection = (targetPosition - transform.position).normalized;
-            float moveSpeed = 4f;
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
-            //smoothing the rotation
-            
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime*rotateSpeed);
-            unitAnimator.SetBool("isWalking",true);
-        }
-        else
-        {
-            unitAnimator.SetBool("isWalking",false);
-            isMoving = false; // Stop moving when close enough
-        }
         //own struct has the comparsion functions in it otherwise this would not work
          GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         if(newGridPosition!= gridPosition)
         {
-            //Unit Changed Gridposition
-            LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
+            //Unit Changed Gridposition - order is important cause eventhandling
+            GridPosition oldGridPosition = gridPosition;
             gridPosition = newGridPosition;
+            LevelGrid.Instance.UnitMovedGridPosition(this, oldGridPosition, newGridPosition);
+        }
+    }
+ 
+    public T GetAction <T>() where T : BaseAction
+    {
+        foreach (BaseAction baseAction in baseActionArray)
+        {
+            if(baseAction is T)
+            {
+                return (T)baseAction;
+            }
+
+        }
+        return null;
+    }
+    public GridPosition GetGridPosition()
+    {
+        return gridPosition;
+    }
+
+    public UnityEngine.Vector3 GetWordPosition()
+    {
+        return transform.position;
+    }
+
+    public BaseAction[] GetBaseActionArray()
+    {
+        return baseActionArray;
+    }
+
+public bool TrySpendActionPointsToTakeAction(BaseAction baseAction)
+{
+    if(CanSpendActionPointsToTakeAction(baseAction))
+    {
+        SpendActionPoints(baseAction.GetActionPointsCost());
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+    public bool CanSpendActionPointsToTakeAction(BaseAction baseAction)
+    {
+        if(actionPoints >= baseAction.GetActionPointsCost())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
-     public float GetSpeed()
+    private void SpendActionPoints (int amount)
     {
-        return speed;
+        actionPoints -= amount;
+        OnAnyActionPointChange?.Invoke(this, EventArgs.Empty);
     }
+   
+    public int GetActionPoints()
+   {
+      return actionPoints;
+   }
+   
+   private void TurnSystem_OnTurnChange(object sender, EventArgs e)
+   {
+     if ((IsEnemy() && TurnSystem.Instance.IsPlayerTurn()) || 
+             (!IsEnemy() && TurnSystem.Instance.IsPlayerTurn()))
+{
+    actionPoints = MaxActionPoints;
+    OnAnyActionPointChange?.Invoke(this, EventArgs.Empty);
+}
 
-    public void Move(Vector3 newTargetPosition)  
-    {
-        this.targetPosition = newTargetPosition;
-        isMoving = true;  // Start moving
-    }
+   }
+
+   public bool IsEnemy()
+   {
+    return isEnemy;
+   }
+
+   public void Damage(int damageAmount)
+   {
+        healthSystem.Damage(damageAmount);
+   }
+
+   private void HealthSystem_OnDead(object sender , EventArgs e)
+   {
+        LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
+        Destroy(gameObject);
+        OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
+   }
+
+   public float GetHealthNomalized()
+   {
+    return healthSystem.GetHealthNormalized();
+   }
 }
