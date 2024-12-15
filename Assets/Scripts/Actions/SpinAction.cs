@@ -22,16 +22,44 @@ public class SpinAction : BaseAction
           totalSpinAmount += spinAmount;
          if(totalSpinAmount >= 360f)
          {
-            isActive = false;
-            onActionComplete();
+           ActionComplete();
          }
         
         
     }
-    public void Spin(Action onActionComplete)
+    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this.onActionComplete = onActionComplete;
-        isActive= true;
+       
         totalSpinAmount = 0f;
+        ActionStart(onActionComplete);
+    }
+
+      public override string GetActionName()
+    {
+       return "Spin";
+    }
+
+    public override List<GridPosition> GetValidGridPositionList()
+    {
+        List<GridPosition> validGridPositionList = new List<GridPosition>();
+        GridPosition unitGridPosition = unit.GetGridPosition();
+
+        return new List<GridPosition>
+        {
+            unitGridPosition
+        };
+    }
+
+    public override int GetActionPointsCost()
+    {
+        return 1;
+    }
+
+    public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
+    {
+        return new EnemyAIAction{
+            gridPosition = gridPosition,
+            actionValue = 0,
+        };
     }
 }
