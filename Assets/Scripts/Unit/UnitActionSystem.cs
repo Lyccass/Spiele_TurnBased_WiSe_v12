@@ -38,6 +38,10 @@ public class UnitActionSystem : MonoBehaviour
 
    private void Update()
    {
+        //if (GameManager.Instance.GetCurrentGameState() == GameState.GameOver)
+        //{
+        //    return;
+        //}
 
         if(isBusy)
         {
