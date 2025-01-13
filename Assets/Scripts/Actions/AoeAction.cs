@@ -7,7 +7,7 @@ public class AoeAction : BaseAction
 {
     [SerializeField] private Transform fireballProjectilePrefab;
    
-    private int maxFireballDistance = 3;
+    [SerializeField] private int maxFireballDistance = 3;
 
     private void Update()
     {

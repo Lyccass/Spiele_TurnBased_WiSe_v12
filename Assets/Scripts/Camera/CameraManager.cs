@@ -32,7 +32,7 @@ public class CameraManager : MonoBehaviour
 
                 Vector3 cameraCharacterHeight = Vector3.up *1.7f;
                 Vector3 attackDir = (targetUnit.GetWordPosition() - actionUnit.GetWordPosition()).normalized;
-                float shoulderOffsetAmount = 25f;
+                float shoulderOffsetAmount = .5f;
                 Vector3 shoulderOffset = Quaternion.Euler(0,90,0) * attackDir* shoulderOffsetAmount;
 
                 Vector3 actionCameraPosition =
