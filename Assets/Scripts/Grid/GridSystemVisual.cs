@@ -101,6 +101,29 @@ public class GridSystemVisual : MonoBehaviour
         }
         ShowGridPositionList(gridPositionList, gridVisualType);
     }
+
+      private void ShowGridPositionRangeSquare(GridPosition gridPosition, int range, GridVisualType gridVisualType)
+    {
+        List<GridPosition> gridPositionList = new List<GridPosition>();
+
+        for (int x = -range; x<= range; x++)
+        {
+            for (int z = -range; z<= range; z++)
+                 {
+                GridPosition testGridPosition = gridPosition + new GridPosition(x , z);
+
+                if(!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
+                    {
+                        continue;
+                    }
+
+                gridPositionList.Add(testGridPosition);
+
+             }
+        }
+        ShowGridPositionList(gridPositionList, gridVisualType);
+    }
+
     public void ShowGridPositionList(List<GridPosition> gridPositionsList, GridVisualType gridVisualType)
     {
         foreach (GridPosition gridPosition in gridPositionsList)
@@ -131,6 +154,16 @@ public class GridSystemVisual : MonoBehaviour
                     gridVisualType = GridVisualType.Red;
 
                     ShowGridPositionRange(selectedUnit.GetGridPosition(), rangedAction.GetMaxRangeDistance(), GridVisualType.LightRed);
+                    break;
+
+                case AoeAction AoeAction:
+                    gridVisualType = GridVisualType.Yellow;
+                    break;
+
+                case MeeleAction meeleAction:
+                    gridVisualType = GridVisualType.Red;
+
+                    ShowGridPositionRangeSquare(selectedUnit.GetGridPosition(), meeleAction.GetMaxMeeleDistance(), GridVisualType.LightRed);
                     break;
         }
         ShowGridPositionList( 
