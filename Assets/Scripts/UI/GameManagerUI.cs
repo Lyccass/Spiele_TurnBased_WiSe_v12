@@ -30,16 +30,8 @@ public class GameManagerUI : MonoBehaviour
         gameOverPanel.SetActive(true);
 
         TextMeshProUGUI gameOverTitle = gameOverPanel.transform.Find("GameOverTitle").GetComponent<TextMeshProUGUI>();
-        gameOverTitle.text = result == "Win" ? "Sucess!" : "Fail";
+        gameOverTitle.text = result == "Win" ? "Success!" : "Fail :(";
     }
 
-     public void backToMap()
-    {
-        // change scene to map
-    }
-
-       public void retry()
-    {
-       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    
 }
