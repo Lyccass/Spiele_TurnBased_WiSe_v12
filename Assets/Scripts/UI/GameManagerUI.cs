@@ -8,7 +8,7 @@ public class GameManagerUI : MonoBehaviour
     public static GameManagerUI Instance { get; private set; }
     [SerializeField] private GameObject gameOverPanel;
 
-    private void Awake()
+    public void Awake()
     {
         // Ensure only one instance exists
         if (Instance != null && Instance != this)
@@ -20,7 +20,7 @@ public class GameManagerUI : MonoBehaviour
         Instance = this; // Set the instance
     }
 
-    void Start()
+    public void Start()
     {
          gameOverPanel.SetActive(false);
     }
@@ -29,7 +29,7 @@ public class GameManagerUI : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
 
-        TextMeshProUGUI gameOverTitle = gameOverPanel.transform.Find("GameOverTitle").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI gameOverTitle = gameOverPanel.transform.Find("GameOverPanel").GetComponent<TextMeshProUGUI>();
         gameOverTitle.text = result == "Win" ? "Sucess!" : "Fail";
     }
 

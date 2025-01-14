@@ -77,6 +77,7 @@ public class AoeAction : BaseAction
     // Pass the active unit as an argument to the Setup method
     fireBallProjectile.Setup(gridPosition, OnFireballBehaviourComplete, unit);
     Debug.Log("Fireball");
+    AudioManager.Instance.PlaySFX("Fireball");
     ActionStart(onActionComplete);
 }
 
