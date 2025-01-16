@@ -90,4 +90,18 @@ public int GetGridHeight()
     return height;
 }
 
-};
+public Door GetDoorAtGridPosition(GridPosition gridPosition)
+{
+    GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+    return gridObject.GetDoor();
+}
+    
+public void SetDoorAtGridPosition(GridPosition gridPosition, Door door)
+{
+    GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+    gridObject.SetDoor(door);
+   
+}
+
+
+}

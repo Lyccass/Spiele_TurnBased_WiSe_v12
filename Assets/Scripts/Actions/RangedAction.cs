@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class RangedAction : BaseAction
 {
+    public static event  EventHandler<OnShootEventArgs> OnAnyShoot;
     public event EventHandler<OnShootEventArgs> OnShoot;
     public class OnShootEventArgs : EventArgs
     {
@@ -69,14 +70,16 @@ private void NextState()
     switch (state)
     {
         case State.Aming:
-            state = State.Shooting;
-            float shootingStateTime = 0.1f;
+              state = State.Shooting;
+            float shootingStateTime = 1.5f;
             stateTimer = shootingStateTime;
+          
             break;
         case State.Shooting:
             state = State.Cooldown; // Fix: Transition to Cooldown
-            float coolOffStateTime = 0.5f;
+            float coolOffStateTime = .5f;
             stateTimer = coolOffStateTime;
+        
             break;
         case State.Cooldown:
             ActionComplete();
@@ -87,6 +90,11 @@ private void NextState()
 
 private void Shoot()
 {
+     OnAnyShoot?.Invoke(this, new OnShootEventArgs
+    {
+        targetUnit = targetUnit,
+        shootingUnit = unit
+    });
     OnShoot?.Invoke(this, new OnShootEventArgs
     {
         targetUnit = targetUnit,

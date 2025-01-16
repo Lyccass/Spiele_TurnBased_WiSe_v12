@@ -162,9 +162,14 @@ public class GridSystemVisual : MonoBehaviour
 
                 case MeeleAction meeleAction:
                     gridVisualType = GridVisualType.Red;
-
-                    ShowGridPositionRangeSquare(selectedUnit.GetGridPosition(), meeleAction.GetMaxMeeleDistance(), GridVisualType.LightRed);
                     break;
+
+                case InteractionAction interactionAction:
+                    gridVisualType = GridVisualType.White;
+                    break;
+
+                
+
         }
         ShowGridPositionList( 
                 selectedAction.GetValidGridPositionList(), gridVisualType);

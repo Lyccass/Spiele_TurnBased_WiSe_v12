@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 2327177680439709333}
   - component: {fileID: -5222086369271068288}
   - component: {fileID: 2790831320528014335}
+  - component: {fileID: 7598913171188810163}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 0
   MaxActionPoints: 2
+  speed: 0
 --- !u!65 &4643333010724226411
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -196,6 +198,18 @@ MonoBehaviour:
   ragdollPrefab: {fileID: 5133447665124704405, guid: 85b1ad840b9a5de459ae58fa570687e4,
     type: 3}
   originalRootBone: {fileID: 3836714778966853861}
+--- !u!114 &7598913171188810163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452766894031091776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90df1e49a0ad5354daaddde0c91c1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1010977058299753444
 GameObject:
   m_ObjectHideFlags: 0

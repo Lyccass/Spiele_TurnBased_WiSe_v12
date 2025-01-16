@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FireBallProjectile : MonoBehaviour
 {
+    public static event EventHandler OnAnyGrenadeExploded;
     [SerializeField] float fireballRadius = 4f;
     [SerializeField] private Transform fireballPrefab;
     [SerializeField] private TrailRenderer trailRenderer;
@@ -40,7 +41,7 @@ public class FireBallProjectile : MonoBehaviour
                     destructableCrate.Damage();
                 }
             }
-
+            OnAnyGrenadeExploded?.Invoke(this, EventArgs.Empty);
             trailRenderer.transform.parent = null;
             Instantiate(fireballPrefab, targetPosition + Vector3.up * 1.2f, Quaternion.identity);
             Destroy(gameObject);
