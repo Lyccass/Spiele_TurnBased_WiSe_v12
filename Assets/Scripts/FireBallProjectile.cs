@@ -7,7 +7,7 @@ public class FireBallProjectile : MonoBehaviour
 {
     [SerializeField] float fireballRadius = 4f;
     [SerializeField] private Transform fireballPrefab;
-     [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private TrailRenderer trailRenderer;
     // Start is called before the first frame update
     private Vector3 targetPosition;
     private Action onFireballBehaviourComplete;

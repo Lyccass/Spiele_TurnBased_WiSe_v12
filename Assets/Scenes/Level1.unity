@@ -2415,6 +2415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
+  currentGameMode: 2
 --- !u!4 &352726737
 Transform:
   m_ObjectHideFlags: 0
@@ -6684,7 +6685,7 @@ PrefabInstance:
     - target: {fileID: 530346253598091253, guid: 001a33f7a3e0e7a498007c40ba9a9d7e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5055586868997578528, guid: 001a33f7a3e0e7a498007c40ba9a9d7e,
         type: 3}
@@ -9626,6 +9627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Unit Enemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 530346253598091253, guid: 001a33f7a3e0e7a498007c40ba9a9d7e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 5055586868997578528, guid: 001a33f7a3e0e7a498007c40ba9a9d7e,
         type: 3}

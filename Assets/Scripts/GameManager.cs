@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum GameMode
+{
+    Elimination, // Win by killing all enemies
+    Hunt, // Win by opening chest
+    Assasination //Win by killing boss enemy
+
+}
+
 public class GameManager : MonoBehaviour
 {    
     public static GameManager Instance { get; set; }
     private bool gameEnded = false;
     public GameState currentGameState = GameState.Playing;
+    [SerializeField] private GameMode currentGameMode;
 
     
     private void Awake()
@@ -31,19 +40,81 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-        var friendlyUnits = UnitManager.Instance.GetFriendlyUnitList();
-        var enemyUnits = UnitManager.Instance.GetEnemyUnitList();
+        switch (currentGameMode)
+        {
+            case GameMode.Elimination:
+            CheckEliminationConditions();
+            break;
 
-            if (friendlyUnits.Count == 0)
+            //case GameMode.Hunt:
+            //CheckHuntConditions();
+            //break;
+
+            case GameMode.Assasination:
+            CheckAssasinationConditions();
+            break;
+        } 
+    }
+
+    void CheckEliminationConditions()
+    {
+        
+        var enemyUnits = UnitManager.Instance.GetEnemyUnitList();
+        if (enemyUnits.Count == 0)
+            {
+            GameOver("Win");
+            }
+
+        var friendlyUnits = UnitManager.Instance.GetFriendlyUnitList();
+        if (friendlyUnits.Count == 0)
+            {
+            GameOver("Lose");
+            }
+       
+            
+    }
+
+    /*void CheckHuntConditions()
+    {
+        if (ChestFound())
+        {
+            GameOver("Win");
+        }
+
+        var friendlyUnits = UnitManager.Instance.GetFriendlyUnitList();
+        if (friendlyUnits.Count == 0)
                 {
                 GameOver("Lose");
                 }
-       
-            else if (enemyUnits.Count == 0)
+    }
+    */
+     void CheckAssasinationConditions()
+    {
+        if (BossDefeated())
+        {
+            GameOver("Win");
+        }
+
+        var friendlyUnits = UnitManager.Instance.GetFriendlyUnitList();
+        if (friendlyUnits.Count == 0)
                 {
-                GameOver("Win");
+                GameOver("Lose");
                 }
     }
+
+
+    /*private bool ChestFound()
+    {
+        GameObject chest = GameObject.FindGameObjectWithTag("Chest"); // object with chest tag in scene
+        return chest != null && chest.IsOpened(); //chest. whatever method you have for interacting with objects
+    }
+    */
+    bool BossDefeated()
+    {
+        GameObject boss = GameObject.FindGameObjectWithTag("Boss"); //enemy tag with boss
+        return boss == null;
+    }
+
 
      void GameOver(string result)
     {
