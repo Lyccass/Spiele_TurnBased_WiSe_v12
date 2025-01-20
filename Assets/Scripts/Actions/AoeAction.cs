@@ -22,6 +22,11 @@ public class AoeAction : BaseAction
     {
         return "Fireball";
     }
+       public override int GetActionPointsCost()
+    {
+        return 3;
+    }
+
 
     public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
     {
@@ -64,13 +69,18 @@ public class AoeAction : BaseAction
     }
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
-    {
-        Transform fireballProjectileTransform = Instantiate(fireballProjectilePrefab, unit.GetWordPosition(), Quaternion.identity);
-        FireBallProjectile fireBallProjectile = fireballProjectileTransform.GetComponent<FireBallProjectile>();
-        fireBallProjectile.Setup(gridPosition, OnFireballBehaviourComplete);
-        Debug.Log("Fireball");
-        ActionStart(onActionComplete);
-    }
+{
+    // Instantiate the fireball projectile at the unit's position
+    Transform fireballProjectileTransform = Instantiate(fireballProjectilePrefab, unit.GetWordPosition(), Quaternion.identity);
+    FireBallProjectile fireBallProjectile = fireballProjectileTransform.GetComponent<FireBallProjectile>();
+
+    // Pass the active unit as an argument to the Setup method
+    fireBallProjectile.Setup(gridPosition, OnFireballBehaviourComplete, unit);
+    Debug.Log("Fireball");
+    AudioManager.Instance.PlaySFX("Fireball");
+    ActionStart(onActionComplete);
+}
+
 
     private void OnFireballBehaviourComplete()
     {
