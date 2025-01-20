@@ -11,6 +11,8 @@ public class LevelScripting : MonoBehaviour
     [SerializeField] private List<GameObject> hider3List;
     [SerializeField] private List<GameObject> enemy1List;
     [SerializeField] private List<GameObject> enemy2List;
+    
+    [SerializeField] private List<GameObject> enemy3List;
     [SerializeField] private Door door1;
     [SerializeField] private Door door2;
 
@@ -18,10 +20,13 @@ public class LevelScripting : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Subscribing to OnAnyUnitMovedGridPosition");
         LevelGrid.Instance.OnAnyUnitMovedGridPosition += LevelGrid_OnAnyUnitMovedGridPosition;
+
         door1.OnDoorOpened += (object sender, EventArgs e) =>
         {
             SetActiveGameObjectList(hider2List, false);
+            SetActiveGameObjectList(enemy3List, true);
         };
         door2.OnDoorOpened += (object sender, EventArgs e) =>
         {
@@ -29,16 +34,17 @@ public class LevelScripting : MonoBehaviour
             SetActiveGameObjectList(enemy2List, true);
         };
     }
+private void LevelGrid_OnAnyUnitMovedGridPosition(object sender, LevelGrid.OnAnyUnitMovedGridPositionEventArgs e)
+{
+     if (e.toGridPosition.x == 9 && !hasShownFirstHider)
+{
+    hasShownFirstHider = true;
+    SetActiveGameObjectList(hider1List, false);
+    SetActiveGameObjectList(enemy1List, true);
+}
 
-    private void LevelGrid_OnAnyUnitMovedGridPosition(object sender, LevelGrid.OnAnyUnitMovedGridPositionEventArgs e)
-    {
-        if (e.toGridPosition.z == 0 && e.toGridPosition.z == 20 && !hasShownFirstHider)
-        {
-            hasShownFirstHider = true;
-            SetActiveGameObjectList(hider1List, false);
-            SetActiveGameObjectList(enemy1List, true);
-        }
-    }
+
+}
 
     private void SetActiveGameObjectList(List<GameObject> gameObjectList, bool isActive)
     {

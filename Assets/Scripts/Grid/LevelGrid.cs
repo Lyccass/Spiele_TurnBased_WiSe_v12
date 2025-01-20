@@ -34,6 +34,8 @@ public class LevelGrid : MonoBehaviour
                 (GridSystem<GridObject> g, GridPosition gridPosition) => new GridObject(g, gridPosition) );
         //gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
     }
+     
+       
 
     private void Start()
     {
@@ -60,16 +62,27 @@ public class LevelGrid : MonoBehaviour
         gridObject.RemoveUnit(unit);
     }
 
-    public void UnitMovedGridPosition(Unit unit, GridPosition fromGridPosition, GridPosition toGridPosition)
+   public void UnitMovedGridPosition(Unit unit, GridPosition fromGridPosition, GridPosition toGridPosition)
+{
+    if (unit.IsEnemy()) // Ensure this works only with friendly units
     {
-         RemoveUnitAtGridPosition(fromGridPosition, unit);
-         AddUnitAtGridPosition(toGridPosition, unit);
-        OnAnyUnitMovedGridPosition?.Invoke(this, new OnAnyUnitMovedGridPositionEventArgs {
-            unit = unit,
-            fromGridPosition = fromGridPosition,
-            toGridPosition = toGridPosition,
-        });
+        Debug.Log("Unit is not friendly, ignoring movement.");
+        RemoveUnitAtGridPosition(fromGridPosition, unit);
+        AddUnitAtGridPosition(toGridPosition, unit);
+        return;
     }
+
+    RemoveUnitAtGridPosition(fromGridPosition, unit);
+    AddUnitAtGridPosition(toGridPosition, unit);
+
+    OnAnyUnitMovedGridPosition?.Invoke(this, new OnAnyUnitMovedGridPositionEventArgs
+    {
+        unit = unit,
+        fromGridPosition = fromGridPosition,
+        toGridPosition = toGridPosition,
+    });
+}
+
 
 
 
@@ -120,7 +133,5 @@ public void SetInteractableAtGridPosition(GridPosition gridPosition, IInteractab
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.ClearInteractable();
     }
-
-
 
 }
