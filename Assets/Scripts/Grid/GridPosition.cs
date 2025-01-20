@@ -56,5 +56,9 @@ public struct GridPosition : IEquatable<GridPosition>
     {
         return new GridPosition (a.x - b.x, a.z - b.z);
     }
+     public Vector3Int ToVector3Int()
+    {
+        return new Vector3Int(x, 0, z); // Assuming `y` is 0 for a flat grid
+    }
 
 }

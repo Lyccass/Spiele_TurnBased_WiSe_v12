@@ -57,7 +57,7 @@ public class GridSystemVisual : MonoBehaviour
         }
 
         UnitActionSystem.Instance.OnSelectedActionChange += UnitActionSystem_OnSelectedActionChange;
-        LevelGrid.Instance.OnAnyUnitMovedPosition += LevelGrid_OnAnyUnitMovedPosition;
+        LevelGrid.Instance.OnAnyUnitMovedGridPosition += LevelGrid_OnAnyUnitMovedPosition;
         UpdateGridVisual();
     }
 
@@ -162,9 +162,14 @@ public class GridSystemVisual : MonoBehaviour
 
                 case MeeleAction meeleAction:
                     gridVisualType = GridVisualType.Red;
-
-                    ShowGridPositionRangeSquare(selectedUnit.GetGridPosition(), meeleAction.GetMaxMeeleDistance(), GridVisualType.LightRed);
                     break;
+
+                case InteractionAction interactionAction:
+                    gridVisualType = GridVisualType.White;
+                    break;
+
+                
+
         }
         ShowGridPositionList( 
                 selectedAction.GetValidGridPositionList(), gridVisualType);

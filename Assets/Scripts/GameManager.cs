@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f; //unfreeze time on scene load
     }
 
-    void Update()
+    public void Update()
     {
          CheckWinLoseConditions();
     }
