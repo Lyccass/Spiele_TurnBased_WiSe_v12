@@ -31,7 +31,11 @@ public class RangedAction : BaseAction
     [SerializeField] private int minDamage = 3;
     [SerializeField] private int maxDamage = 6;
 
-
+protected override void Awake()
+    {
+        base.Awake();
+        _priorityMultiplier = 2.0f; // Higher priority for shooting
+    }
 
      private void Update() 
     {
@@ -210,7 +214,7 @@ public List<GridPosition> GetValidGridPositionList(GridPosition unitGridPosition
     }
 
     // Calculate the action value based on the target's health
-    int actionValue = 100 + Mathf.RoundToInt((1 - targetUnit.GetHealthNomalized()) * 100f);
+    float actionValue = 100 + Mathf.RoundToInt((1 - targetUnit.GetHealthNomalized()) * 100f);
 
     // Check if the enemy's line of sight is blocked by an obstacle
     UnityEngine.Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPositionn(gridPosition);
@@ -229,11 +233,7 @@ public List<GridPosition> GetValidGridPositionList(GridPosition unitGridPosition
         actionValue = 0; // Adjust the penalty value as needed
     }
 
-    return new EnemyAIAction
-    {
-        gridPosition = gridPosition,
-        actionValue = actionValue
-    };
+    return new EnemyAIAction(gridPosition, actionValue);
 }
 
 
