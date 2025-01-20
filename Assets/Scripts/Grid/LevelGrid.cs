@@ -8,7 +8,14 @@ public class LevelGrid : MonoBehaviour
 {
     [SerializeField]private Transform gridDebugObjectPrefab;
      public static LevelGrid Instance{get; private set;}
-     public event EventHandler OnAnyUnitMovedPosition;
+    public event EventHandler<OnAnyUnitMovedGridPositionEventArgs> OnAnyUnitMovedGridPosition;
+    public class OnAnyUnitMovedGridPositionEventArgs : EventArgs
+    {
+        public Unit unit;
+        public GridPosition fromGridPosition;
+        public GridPosition toGridPosition;
+    }
+
     private GridSystem<GridObject> gridSystem;
     [SerializeField] private int width;
     [SerializeField] private int height;
@@ -57,8 +64,13 @@ public class LevelGrid : MonoBehaviour
     {
          RemoveUnitAtGridPosition(fromGridPosition, unit);
          AddUnitAtGridPosition(toGridPosition, unit);
-         OnAnyUnitMovedPosition?.Invoke(this, EventArgs.Empty);
+        OnAnyUnitMovedGridPosition?.Invoke(this, new OnAnyUnitMovedGridPositionEventArgs {
+            unit = unit,
+            fromGridPosition = fromGridPosition,
+            toGridPosition = toGridPosition,
+        });
     }
+
 
 
     public GridPosition GetGridPosition(Vector3 worldPosition) => gridSystem.GetGridPosition(worldPosition);
@@ -90,4 +102,25 @@ public int GetGridHeight()
     return height;
 }
 
-};
+public IInteractable GetInteractableAtGridPosition(GridPosition gridPosition)
+{
+    GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+    return gridObject.GetInteractable();
+}
+    
+public void SetInteractableAtGridPosition(GridPosition gridPosition, IInteractable interactable)
+{
+    GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+    gridObject.SetInteractable(interactable);
+   
+}
+
+ public void ClearInteractableAtGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        gridObject.ClearInteractable();
+    }
+
+
+
+}
