@@ -17,12 +17,22 @@ public class GameManager : MonoBehaviour
     private bool gameEnded = false;
     public GameState currentGameState = GameState.Playing;
     [SerializeField] private GameMode currentGameMode;
+    [SerializeField] public int enemies;
+    [SerializeField] public int boss;
+    [SerializeField] private int chest;
+    public UnitManager unitManager;
 
     
     private void Awake()
     {
         // Listen for when scenes are loaded
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+    }
+
+    private void Start()
+    {
+        unitManager = GetComponent<UnitManager>();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -46,9 +56,9 @@ public class GameManager : MonoBehaviour
             CheckEliminationConditions();
             break;
 
-            //case GameMode.Hunt:
-            //CheckHuntConditions();
-            //break;
+            case GameMode.Hunt:
+            CheckHuntConditions();
+            break;
 
             case GameMode.Assasination:
             CheckAssasinationConditions();
@@ -58,9 +68,8 @@ public class GameManager : MonoBehaviour
 
     void CheckEliminationConditions()
     {
-        
-        var enemyUnits = UnitManager.Instance.GetEnemyUnitList();
-        if (enemyUnits.Count == 0)
+
+        if (enemies == 0)
             {
             GameOver("Win");
             }
@@ -70,13 +79,12 @@ public class GameManager : MonoBehaviour
             {
             GameOver("Lose");
             }
-       
-            
+             
     }
 
-    /*void CheckHuntConditions()
+    void CheckHuntConditions()
     {
-        if (ChestFound())
+        if (chest == 0)
         {
             GameOver("Win");
         }
@@ -87,10 +95,11 @@ public class GameManager : MonoBehaviour
                 GameOver("Lose");
                 }
     }
-    */
+    
+
      void CheckAssasinationConditions()
     {
-        if (BossDefeated())
+        if (boss == 0)
         {
             GameOver("Win");
         }
@@ -103,20 +112,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    /*private bool ChestFound()
-    {
-        GameObject chest = GameObject.FindGameObjectWithTag("Chest"); // object with chest tag in scene
-        return chest != null && chest.IsOpened(); //chest. whatever method you have for interacting with objects
-    }
-    */
-    bool BossDefeated()
-    {
-        GameObject boss = GameObject.FindGameObjectWithTag("Boss"); //enemy tag with boss
-        return boss == null;
-    }
-
-
-     void GameOver(string result)
+       void GameOver(string result)
     {
         gameEnded = true;
         currentGameState = GameState.GameOver;
@@ -132,4 +128,12 @@ public class GameManager : MonoBehaviour
     {
         return currentGameState;
     }
+
+
+
+
+
+
 }
+
+

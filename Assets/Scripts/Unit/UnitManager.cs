@@ -57,6 +57,11 @@ public class UnitManager : MonoBehaviour
         if(unit.IsEnemy())
         {
             enemyUnitList.Remove(unit);
+            GameManager.Instance.enemies --;
+            if(unit.CompareTag("boss"))
+                {
+                    GameManager.Instance.boss --;
+                }
         }
         else
         {
