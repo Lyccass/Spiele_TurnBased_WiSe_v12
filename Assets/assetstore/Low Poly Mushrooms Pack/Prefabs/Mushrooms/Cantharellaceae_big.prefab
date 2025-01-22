@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5202223990568306120}
   - component: {fileID: 8058897284127404290}
   - component: {fileID: 3188284289631163803}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cantharellaceae_big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.1448355, y: 5.1448355, z: 5.1448355}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 690101c7675e7414d857580580eeb1fa, type: 2}
+  - {fileID: 2100000, guid: c9918ae18ed6a3f42b2e17a347b06653, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,5 +103,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8285403, y: 0.8067498, z: 0.87298614}
+  m_Size: {x: 0.55, y: 0.8067498, z: 0.57}
   m_Center: {x: 0.03275439, y: 0.3233993, z: 0.00790453}
