@@ -70,7 +70,7 @@ private void NextState()
     switch (state)
     {
         case State.Aming:
-              state = State.Shooting;
+            state = State.Shooting;
             float shootingStateTime = 1.5f;
             stateTimer = shootingStateTime;
           

@@ -16,15 +16,23 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; set; }
     private bool gameEnded = false;
     public GameState currentGameState = GameState.Playing;
-    [SerializeField] private GameMode currentGameMode;
+    [SerializeField] public GameMode currentGameMode;
     [SerializeField] public int enemies;
     [SerializeField] public int boss;
-    [SerializeField] private int chest;
+    [SerializeField] public int chest;
     public UnitManager unitManager;
 
     
     private void Awake()
-    {
+    {   
+         if (Instance != null)
+        {
+            Debug.LogError("Error, more than one GameManager instance in the scene.");
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         // Listen for when scenes are loaded
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -128,10 +136,6 @@ public class GameManager : MonoBehaviour
     {
         return currentGameState;
     }
-
-
-
-
 
 
 }
