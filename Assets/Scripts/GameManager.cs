@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
 {    
     public static GameManager Instance { get; set; }
     private bool gameEnded = false;
+    private bool isPaused = false;
     public GameState currentGameState = GameState.Playing;
     [SerializeField] public GameMode currentGameMode;
     [SerializeField] public int enemies;
+    public int killedEnemies = 0;
     [SerializeField] public int boss;
     [SerializeField] public int chest;
     public UnitManager unitManager;
@@ -120,7 +122,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-       void GameOver(string result)
+    void GameOver(string result)
     {
         gameEnded = true;
         currentGameState = GameState.GameOver;
@@ -131,6 +133,28 @@ public class GameManager : MonoBehaviour
         GameManagerUI.Instance.ShowGameOverScreen(result);
        
     }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        currentGameState = GameState.Pause;
+        Debug.Log("Game Paused.");
+        Time.timeScale = 0f;
+
+        GameManagerUI.Instance.ShowPausedScreen();
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        currentGameState = GameState.Playing;
+        Debug.Log("Game Resumed.");
+        Time.timeScale = 1f;
+
+        GameManagerUI.Instance.HidePausedScreen();
+    }
+
+
 
         public GameState GetCurrentGameState()
     {
