@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class MeeleAction : BaseAction
 {
+    public static event EventHandler<OnMeleeAttackEventArgs> OnAnyMeleeAttack;
+    public event EventHandler<OnMeleeAttackEventArgs> OnMeleeAttack;
+
+    public class OnMeleeAttackEventArgs : EventArgs
+    {
+    public Unit targetUnit;
+    public Unit attackingUnit;
+    }
+
     private enum State
     {
         MeeleBeforeHit,
@@ -44,21 +53,41 @@ public class MeeleAction : BaseAction
     }
 
     private void NextState()
-{
-    switch (state)
     {
-        case State.MeeleBeforeHit:
-            state = State.MeeleAfterHit;
-            float AfterHitStateTime = 0.5f;
-            stateTimer = AfterHitStateTime;
-            targetUnit.Damage(UnityEngine.Random.Range(7, 10));
-            break;
-        case State.MeeleAfterHit:
-            ActionComplete();
-            break;
+        switch (state)
+        {
+            case State.MeeleBeforeHit:
+                state = State.MeeleAfterHit;
+                float AfterHitStateTime = 0.5f;
+                stateTimer = AfterHitStateTime;
+                Attack();
+                break;
+            case State.MeeleAfterHit:
+                ActionComplete();
+                break;
      
+        }
     }
+
+    private void Attack()
+{
+    // Trigger events for melee attack
+    OnAnyMeleeAttack?.Invoke(this, new OnMeleeAttackEventArgs
+    {
+        targetUnit = targetUnit,
+        attackingUnit = unit
+    });
+
+    OnMeleeAttack?.Invoke(this, new OnMeleeAttackEventArgs
+    {
+        targetUnit = targetUnit,
+        attackingUnit = unit
+    });
+
+    // Deal damage to the target unit
+    targetUnit.Damage(UnityEngine.Random.Range(7, 10));
 }
+
 
     public override string GetActionName()
     {
