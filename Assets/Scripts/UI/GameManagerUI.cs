@@ -27,7 +27,6 @@ public class GameManagerUI : MonoBehaviour
     {
          gameOverPanel.SetActive(false);
          gameWonPanel.SetActive(false);
-         gamePausedPanel.SetActive(false);
     }
 
     void Update()
