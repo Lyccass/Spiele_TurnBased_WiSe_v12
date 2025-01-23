@@ -95,13 +95,10 @@ public class MeeleAction : BaseAction
     }
 
     public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
-    {
-        return new EnemyAIAction
-        {
-            gridPosition = gridPosition,
-            actionValue = 200,
-        };
-    }
+{
+    return new EnemyAIAction(gridPosition, 200f);
+}
+
 
     public override List<GridPosition> GetValidGridPositionList()
     {
