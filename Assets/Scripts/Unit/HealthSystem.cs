@@ -16,28 +16,12 @@ public class HealthSystem : MonoBehaviour
                 healthMax = health;
         }
    public void Damage(int damageAmount)
-{
-    StartCoroutine(DelayedDamage(damageAmount));
-}
-
-private IEnumerator DelayedDamage(int damageAmount)
-{
-    
-    // Add the delay duration
-    yield return new WaitForSeconds(1.5f); 
-
-    // Apply the damage after the delay
+   {
     health -= damageAmount;
-    if (health < 0)
+    if( health < 0)
     {
         health = 0;
     }
-
-    OnDamaged?.Invoke(this, EventArgs.Empty);
-
-    Debug.Log($"Damage applied: {damageAmount}. Remaining health: {health}");
-}
-
 
     OnDamaged?.Invoke(this, EventArgs.Empty);
 
