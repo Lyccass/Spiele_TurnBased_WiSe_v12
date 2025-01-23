@@ -1859,6 +1859,11 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3535367349892000784, guid: 400bb48e34e39ba4f9983412e9609d74,
+        type: 3}
+      propertyPath: m_Name
+      value: LivingEnemies
+      objectReference: {fileID: 0}
     - target: {fileID: 4342803336489364336, guid: 400bb48e34e39ba4f9983412e9609d74,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -8278,7 +8283,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 857708386}
     - target: {fileID: 3257834972363719740, guid: 400bb48e34e39ba4f9983412e9609d74,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -11841,7 +11846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &524695890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15026,6 +15031,11 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3535367349892000784, guid: 400bb48e34e39ba4f9983412e9609d74,
+        type: 3}
+      propertyPath: m_Name
+      value: DeadEnemies
+      objectReference: {fileID: 0}
     - target: {fileID: 4342803336489364336, guid: 400bb48e34e39ba4f9983412e9609d74,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -15257,7 +15267,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 857708386}
     - target: {fileID: 3257834972363719740, guid: 400bb48e34e39ba4f9983412e9609d74,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -17295,7 +17305,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: it doesnt work
+  m_text: MISSION PAUSED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d311d0f0694cc51428e376370e8b90aa, type: 2}
   m_sharedMaterial: {fileID: 1780170999738933311, guid: d311d0f0694cc51428e376370e8b90aa,
@@ -19141,7 +19151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: it doesnt work
+  m_text: MISSION SUCCEEDED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d311d0f0694cc51428e376370e8b90aa, type: 2}
   m_sharedMaterial: {fileID: 1780170999738933311, guid: d311d0f0694cc51428e376370e8b90aa,
@@ -22430,7 +22440,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 857708386}
+      objectReference: {fileID: 1961728236}
     - target: {fileID: 3257834972363719740, guid: 400bb48e34e39ba4f9983412e9609d74,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -22439,12 +22449,12 @@ PrefabInstance:
     - target: {fileID: 3257834972363719740, guid: 400bb48e34e39ba4f9983412e9609d74,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReloadCurrentScene
+      value: ResumeGame
       objectReference: {fileID: 0}
     - target: {fileID: 3257834972363719740, guid: 400bb48e34e39ba4f9983412e9609d74,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneChanges, Assembly-CSharp
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3257834972363719740, guid: 400bb48e34e39ba4f9983412e9609d74,
         type: 3}
@@ -26397,11 +26407,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 857708384}
+      objectReference: {fileID: 1961728236}
     - target: {fileID: 1758158881194707029, guid: acd8aa540c2977946813dfa4c49c9674,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758158881194707029, guid: acd8aa540c2977946813dfa4c49c9674,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758158881194707029, guid: acd8aa540c2977946813dfa4c49c9674,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758158881194707029, guid: acd8aa540c2977946813dfa4c49c9674,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4517176734156629243, guid: acd8aa540c2977946813dfa4c49c9674,
         type: 3}
@@ -33114,7 +33139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: it doesnt work
+  m_text: mISSION FAILED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d311d0f0694cc51428e376370e8b90aa, type: 2}
   m_sharedMaterial: {fileID: 1780170999738933311, guid: d311d0f0694cc51428e376370e8b90aa,
@@ -38037,6 +38062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 778375707}
+  gameWonPanel: {fileID: 0}
+  gamePausedPanel: {fileID: 0}
 --- !u!1001 &1776499964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41827,6 +41854,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGameState: 0
   currentGameMode: 0
+  enemies: 0
+  killedEnemies: 0
+  boss: 0
+  chest: 0
+  unitManager: {fileID: 0}
 --- !u!1001 &1965474936
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class Unit : MonoBehaviour
     [SerializeField] public int MaxActionPoints = 2;
     private BaseAction[] baseActionArray;
     private int actionPoints;
-    [SerializeField] private int speed = 0;
+    
 
     private void Awake()
     {
@@ -144,8 +144,5 @@ public bool TrySpendActionPointsToTakeAction(BaseAction baseAction)
     return healthSystem.GetHealthNormalized();
    }
 
-   public int GetSpeed()
-   {
-      return speed;
-   }
+   
 }

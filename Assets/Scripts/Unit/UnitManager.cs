@@ -57,6 +57,14 @@ public class UnitManager : MonoBehaviour
         if(unit.IsEnemy())
         {
             enemyUnitList.Remove(unit);
+            GameManager.Instance.enemies --;
+            GameManager.Instance.killedEnemies ++;
+            Debug.Log($"Enemy killed. Remaining enemies: {GameManager.Instance.enemies}");
+            if(GameManager.Instance.currentGameMode == GameMode.Elimination && unit.CompareTag("boss"))
+                {
+                    GameManager.Instance.boss --;
+                    Debug.Log($"Boss defeated! Remaining bosses: {GameManager.Instance.boss}");
+                }
         }
         else
         {
