@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4789224285325908}
   - component: {fileID: 33630204741606468}
   - component: {fileID: 23861271996079508}
-  - component: {fileID: 64667215755643054}
-  m_Layer: 0
+  - component: {fileID: 3833081160017429346}
+  m_Layer: 8
   m_Name: oakTree_leafless
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630287520782172}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 23.61, y: 0, z: -11.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64667215755643054
-MeshCollider:
+--- !u!65 &3833081160017429346
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: e3d54c8d2447c9f4b9ad5d2021da4b42, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 2.78, y: 7.6324162, z: 2.97}
+  m_Center: {x: 0.22, y: 3.815729, z: 0.1}
