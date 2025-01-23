@@ -7,6 +7,7 @@ public class Door : MonoBehaviour, IInteractable
     public event EventHandler OnDoorOpened; // Event for this specific door opening
 
     [SerializeField] private bool isOpen; // Tracks if the door starts open
+    [SerializeField] private bool isChest; // chest interactable
     private GridPosition gridPosition; // Grid position of the door
     private Animator animator; // Animator component
     private Action onInteractComplete; // Callback when interaction completes
@@ -55,14 +56,33 @@ public class Door : MonoBehaviour, IInteractable
         isActive = true;
         timer = 0.5f; // Interaction duration
 
-        if (isOpen)
+        if (isChest && !isOpen)
         {
-            CloseDoor();
+            OpenChest();
         }
-        else
+        else if (!isChest)
         {
-            OpenDoor();
+            if (isOpen)
+            {
+                CloseDoor();
+            }
+            else
+            {
+                OpenDoor();
+            }
         }
+        else 
+        {
+            return;
+        }
+    }
+
+    private void OpenChest()
+    {
+        isOpen = true;
+        animator.SetTrigger("Open"); //insert animation lmao
+        GameManager.Instance.chest --;
+        Debug.Log($"Chest opened! Remaining chests: {GameManager.Instance.chest}");
     }
 
     private void OpenDoor()
@@ -74,6 +94,7 @@ public class Door : MonoBehaviour, IInteractable
         // Trigger events when the door is opened
         OnDoorOpened?.Invoke(this, EventArgs.Empty);
         OnAnyDoorOpened?.Invoke(this, EventArgs.Empty);
+
     }
 
     private void CloseDoor()

@@ -63,7 +63,8 @@ public abstract class BaseAction : MonoBehaviour
 
         if(enemyAIActionList.Count > 0){
 
-        enemyAIActionList.Sort((EnemyAIAction a, EnemyAIAction b) => b.actionValue - a.actionValue);
+        enemyAIActionList.Sort((EnemyAIAction a, EnemyAIAction b) => b.actionValue.CompareTo(a.actionValue));
+
         return enemyAIActionList[0];
         }else
         {
@@ -73,6 +74,8 @@ public abstract class BaseAction : MonoBehaviour
     }
 
     public abstract EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition);
+    protected float _priorityMultiplier = 1.0f; 
+
 
 }
 

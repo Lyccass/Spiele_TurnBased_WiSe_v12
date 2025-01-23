@@ -132,15 +132,17 @@ GridPosition unitGridPosition = unit.GetGridPosition();
     }
 
     
-    public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
-    {
-        int targetCountAtGridPosition = unit.GetAction<RangedAction>().GetTargetCountAtPosition(gridPosition);
-        return new EnemyAIAction{
-            gridPosition = gridPosition,
-            actionValue = targetCountAtGridPosition * 10,
-        };
-    }
+public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
+{
+    int targetCountAtGridPosition = unit.GetAction<RangedAction>().GetTargetCountAtPosition(gridPosition);
 
+    // If no target is in range, add randomness to movement
+    float randomFactor = UnityEngine.Random.Range(0.01f, 0.999f);
+    float actionValue = targetCountAtGridPosition > 0 
+        ? targetCountAtGridPosition * 10 
+        : randomFactor * 5; // Random value when no target is in range
+
+    return new EnemyAIAction(gridPosition, actionValue);
+}
     
-
 }

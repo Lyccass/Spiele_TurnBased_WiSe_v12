@@ -7,6 +7,9 @@ public class GameManagerUI : MonoBehaviour
 {
     public static GameManagerUI Instance { get; private set; }
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameWonPanel;
+    [SerializeField] private GameObject gamePausedPanel;
+
 
     private void Awake()
     {
@@ -23,14 +26,35 @@ public class GameManagerUI : MonoBehaviour
     void Start()
     {
          gameOverPanel.SetActive(false);
+         gameWonPanel.SetActive(false);
+         gamePausedPanel.SetActive(false);
+    }
+
+    void Update()
+    {
+        GameObject.Find("LivingEnemies").GetComponent<TextMeshProUGUI>().text = GameManager.Instance.enemies.ToString();
+        GameObject.Find("DeadEnemies").GetComponent<TextMeshProUGUI>().text = GameManager.Instance.killedEnemies.ToString();
     }
 
     public void ShowGameOverScreen(string result)
     {
-        gameOverPanel.SetActive(true);
+        if (result == "Win")
+        {
+            gameWonPanel.SetActive(true);
+        }
+        else
+        {
+            gameOverPanel.SetActive(true);
+        }
+    }
 
-        TextMeshProUGUI gameOverTitle = gameOverPanel.transform.Find("GameOverTitle").GetComponent<TextMeshProUGUI>();
-        gameOverTitle.text = result == "Win" ? "Success!" : "Fail :(";
+    public void ShowPausedScreen()
+    {
+        gamePausedPanel.SetActive(true);
+    }
+     public void HidePausedScreen()
+    {
+        gamePausedPanel.SetActive(false);
     }
 
     
