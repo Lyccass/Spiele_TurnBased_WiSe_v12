@@ -24,6 +24,8 @@ public class MeeleAction : BaseAction
     private State state;
     private float stateTimer;
     private Unit targetUnit;
+    [SerializeField] private int minDamage = 3;
+    [SerializeField] private int maxDamage = 6;
 
     private void Update()
     {
@@ -85,7 +87,7 @@ public class MeeleAction : BaseAction
     });
 
     // Deal damage to the target unit
-    targetUnit.Damage(UnityEngine.Random.Range(7, 10));
+    targetUnit.Damage(UnityEngine.Random.Range(minDamage, maxDamage));
 }
 
 

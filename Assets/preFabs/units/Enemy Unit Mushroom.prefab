@@ -13,6 +13,16 @@ PrefabInstance:
       propertyPath: health
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -2179808354589893823, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: maxDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: maxRangedDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 452766894031091776, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: m_Name
@@ -25,6 +35,11 @@ PrefabInstance:
       objectReference: {fileID: 2924907360709628382}
     - target: {fileID: 2327177680439709333, guid: e6471af187792624b849d97576ac3940,
         type: 3}
+      propertyPath: shootPointTransform
+      value: 
+      objectReference: {fileID: 6592392288365582619}
+    - target: {fileID: 2327177680439709333, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
       propertyPath: characterAnimatorOverride
       value: 
       objectReference: {fileID: 22100000, guid: 844def9afb04604409862d0f50ca700a,
@@ -33,8 +48,12 @@ PrefabInstance:
         type: 3}
       propertyPath: ragdollPrefab
       value: 
-      objectReference: {fileID: 693961503423672016, guid: fc360703ab856d14084169106570d387,
+      objectReference: {fileID: 5055586868997578528}
+    - target: {fileID: 2790831320528014335, guid: e6471af187792624b849d97576ac3940,
         type: 3}
+      propertyPath: originalRootBone
+      value: 
+      objectReference: {fileID: 1539516640134622558}
     - target: {fileID: 3807745868216022751, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: m_Mesh
@@ -99,6 +118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isEnemy
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951325758057648784, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: maxMoveDistance
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -309,6 +333,12 @@ PrefabInstance:
 --- !u!4 &341140371609714658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: dccc26e5de456854fa56e11026d390db,
+    type: 3}
+  m_PrefabInstance: {fileID: 6811586185915656737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1539516640134622558 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: dccc26e5de456854fa56e11026d390db,
     type: 3}
   m_PrefabInstance: {fileID: 6811586185915656737}
   m_PrefabAsset: {fileID: 0}

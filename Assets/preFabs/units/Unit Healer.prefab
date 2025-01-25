@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 0
-  MaxActionPoints: 10
+  MaxActionPoints: 5
 --- !u!65 &4643333010724226411
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   animator: {fileID: 892038070638168488}
   arrowPrefab: {fileID: 2211688762879283198, guid: 4a2827e3cd909f8408e93043f8731ec9,
     type: 3}
-  shootPointTransform: {fileID: 0}
+  shootPointTransform: {fileID: 5234009617515461759}
   characterAnimatorOverride: {fileID: 0}
 --- !u!114 &3471727286432197569
 MonoBehaviour:
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdollPrefab: {fileID: 5133447665124704405, guid: 85b1ad840b9a5de459ae58fa570687e4,
     type: 3}
-  originalRootBone: {fileID: 0}
+  originalRootBone: {fileID: 7661175845493118130}
 --- !u!114 &2279258987084242374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 10
-  maxMoveDistance: 1
+  maxMoveDistance: 4
 --- !u!114 &5994361660759164970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbae7708d85aa3b4e86ba9f8c9115817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minDamage: 2
+  maxDamage: 4
 --- !u!114 &-7612670401489343926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,10 +194,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  maxRangedDistance: 7
-  minDamage: 3
-  maxDamage: 6
+    m_Bits: 256
+  maxRangedDistance: 4
+  minDamage: 1
+  maxDamage: 3
 --- !u!114 &1034555290831278549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +655,12 @@ Transform:
 --- !u!4 &6521506047536829394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f9604867929a01a49b042bce7d24f3ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 6704648526355493945}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7661175845493118130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5234796194602393461, guid: f9604867929a01a49b042bce7d24f3ab,
     type: 3}
   m_PrefabInstance: {fileID: 6704648526355493945}
   m_PrefabAsset: {fileID: 0}
