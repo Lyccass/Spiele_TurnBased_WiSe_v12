@@ -8,4 +8,28 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: MuahroomAnimatorOverrideController
   m_Controller: {fileID: 9100000, guid: 9d3e5ba8e74e99645bd8650d6b1ffedb, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: -203655887218126122, guid: cf385676cb27bf94fbe1125722de8531,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: ab414a0e84beb77488d7164d95e2c44c,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 014f564eac35ac34091dae2f45c86f34,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 51c57ea70dfe6e84caf59f79a1125ed9,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 7bc156749cc2de74cbcc2884fa7abdd6,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: f192b639717bd4c41aab5e486e51226a,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 451ca152868bc0646bb0712235be3433,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: e7fb82b51c71b864ab996f024db8b098,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 9195a11e22a910040bb248d13069a5aa,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: dccc26e5de456854fa56e11026d390db,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 50d726fb5a7b36449a30948ea5bcfc2c,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 470efe3106b2a6548a7b6c2ae2ed5476,
+      type: 3}
