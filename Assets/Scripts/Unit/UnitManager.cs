@@ -8,7 +8,8 @@ public class UnitManager : MonoBehaviour
     public static UnitManager Instance{get; private set;}  
     private List<Unit> unitList;
     private List<Unit> friendlyUnitList;
-    private List<Unit> enemyUnitList;  
+    private List<Unit> enemyUnitList;
+    private Unit bossUnit;
     
 
 
@@ -40,6 +41,10 @@ public class UnitManager : MonoBehaviour
         if(unit.IsEnemy())
         {
             enemyUnitList.Add(unit);
+            if (unit.CompareTag("Boss")){
+                bossUnit = unit;
+                 Debug.Log("Boss spawned!");
+            }
         }
         else
         {
@@ -60,11 +65,12 @@ public class UnitManager : MonoBehaviour
             GameManager.Instance.enemies --;
             GameManager.Instance.killedEnemies ++;
             Debug.Log($"Enemy killed. Remaining enemies: {GameManager.Instance.enemies}");
-            if(GameManager.Instance.currentGameMode == GameMode.Elimination && unit.CompareTag("boss"))
+            if(GameManager.Instance.currentGameMode == GameMode.Assasination && unit == bossUnit)
                 {
                     GameManager.Instance.boss --;
                     Debug.Log($"Boss defeated! Remaining bosses: {GameManager.Instance.boss}");
                 }
+            
         }
         else
         {

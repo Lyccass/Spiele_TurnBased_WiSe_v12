@@ -80,7 +80,7 @@ public class Door : MonoBehaviour, IInteractable
     private void OpenChest()
     {
         isOpen = true;
-        animator.SetTrigger("Open"); //insert animation lmao
+        //animator.SetTrigger("Open"); 
         GameManager.Instance.chest --;
         Debug.Log($"Chest opened! Remaining chests: {GameManager.Instance.chest}");
     }
