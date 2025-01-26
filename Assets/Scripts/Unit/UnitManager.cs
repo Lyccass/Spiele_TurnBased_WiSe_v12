@@ -32,6 +32,13 @@ public class UnitManager : MonoBehaviour
         Unit.OnAnyUnitDead +=  Unit_OnAnyUnitDead;
     }
 
+      private void OnDestroy()
+    {
+        // Unsubscribe from events to avoid duplicate calls
+        Unit.OnAnyUnitSpawned -= Unit_OnAnyUnitSpawned;
+        Unit.OnAnyUnitDead -= Unit_OnAnyUnitDead;
+    }
+
     private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
     {
         Unit unit = sender as Unit;
@@ -43,7 +50,7 @@ public class UnitManager : MonoBehaviour
             enemyUnitList.Add(unit);
             if (unit.CompareTag("Boss")){
                 bossUnit = unit;
-                 Debug.Log("Boss spawned!");
+                Debug.Log("Boss spawned!");
             }
         }
         else
