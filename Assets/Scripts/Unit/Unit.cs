@@ -144,5 +144,17 @@ public bool TrySpendActionPointsToTakeAction(BaseAction baseAction)
     return healthSystem.GetHealthNormalized();
    }
 
+      // Add `IsFullHealth` method
+    public bool IsFullHealth()
+    {
+        return healthSystem.GetCurrentHealth() >= healthSystem.GetMaxHealth();
+    }
+
+    // Add `Heal` method
+    public void Heal(int healAmount)
+    {
+        healthSystem.Heal(healAmount);
+    }
+
    
 }

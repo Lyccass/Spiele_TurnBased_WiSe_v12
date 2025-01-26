@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EnemyAIAction
 {
-  
-  public GridPosition gridPosition;
-  public int actionValue;
-  
+    public GridPosition gridPosition;
+    public float actionValue;
+
+    public EnemyAIAction(GridPosition gridPosition, float actionValue)
+    {
+        this.gridPosition = gridPosition;
+        this.actionValue = actionValue;
+    }
 }

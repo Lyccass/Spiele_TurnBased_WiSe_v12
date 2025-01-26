@@ -30,11 +30,9 @@ public class AoeAction : BaseAction
 
     public override EnemyAIAction GetBestEnemyAIAction(GridPosition gridPosition)
     {
-       return new EnemyAIAction {
-        gridPosition = gridPosition,
-        actionValue = 0,
-       };
-    }
+       return new EnemyAIAction(gridPosition,0f);
+}
+    
 
   public override List<GridPosition> GetValidGridPositionList()
     {
