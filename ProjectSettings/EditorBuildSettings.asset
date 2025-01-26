@@ -14,28 +14,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hub.unity
     guid: 6a4dea5851bc4e748856190c4080fb42
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Options.unity
     guid: 22bb7722f441bc240a1750f81b8fc681
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/20x20 Map Farah.unity
     guid: f849f937323769445b3cebab122b6a33
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/20x20 Map FarahFruck.unity
     guid: 6023d43a3a80cc145b68643deab3e553
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/20x20 Map Luka.unity
     guid: 632019fd6de99744dbe81fad1739bd1b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/25x25 Map Alec.unity
     guid: b2b581b03ea93c84aae377114d6cc838
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/25x25 Map Liz.unity
     guid: 4d0ee7fc7f247ad4dafebe584ed289ca
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/35x35 Map Jacky.unity
     guid: fb1e06ea405ea2a4db491ea6d93479a0
   m_configObjects: {}
