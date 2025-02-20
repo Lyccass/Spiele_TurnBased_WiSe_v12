@@ -37,10 +37,20 @@ private void UpdateTurnText()
   activeTurn.text = "Active Turn: " + TurnSystem.Instance.GetTurnNumber();
 }
 
-private void UpdateEnemyTurnVisual()
+public void UpdateEnemyTurnVisual()
 {
-  enemyTurnVisual.SetActive(!TurnSystem.Instance.IsPlayerTurn());
+    if (enemyTurnVisual == null)
+    {
+        Debug.LogError("EnemyTurnVisual is not assigned!");
+        return;
+    }
+
+    //s
+    bool shouldShowEnemyUI = !TurnSystem.Instance.IsPlayerTurn() && !UnitActionSystem.Instance.IsBusy();
+    
+    enemyTurnVisual.SetActive(shouldShowEnemyUI);
 }
+
 
 private void UpdatedEndTurnButton()
 {
@@ -48,3 +58,4 @@ private void UpdatedEndTurnButton()
 }
 
 }
+
