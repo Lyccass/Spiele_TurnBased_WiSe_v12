@@ -37,14 +37,11 @@ public class SceneChanges : MonoBehaviour
       public void LoadLevel(string levelName)
     {   
         LoadScene(levelName);
-        Time.timeScale = 1f; // Unfreeze game time
-        
     }
 
       //reload current scene
     public void ReloadCurrentScene()
     {
-        Time.timeScale = 1f; // Unfreeze game time
         string currentScene = SceneManager.GetActiveScene().name;
         LoadScene(currentScene);
         

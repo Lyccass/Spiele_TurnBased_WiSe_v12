@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MuahroomAnimatorOverrideController
+  m_Controller: {fileID: 9100000, guid: 9d3e5ba8e74e99645bd8650d6b1ffedb, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7457104681841575465, guid: 825fb0c1c2a302f4cabf37af80ff2a92,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: ab414a0e84beb77488d7164d95e2c44c,
+      type: 3}
+  - m_OriginalClip: {fileID: 5109882046393193992, guid: 2cb9fa38b69811b489d9248606c30677,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 51c57ea70dfe6e84caf59f79a1125ed9,
+      type: 3}
+  - m_OriginalClip: {fileID: -4139645668400961732, guid: 5ae267e3388acf94ca0862afd0988b3b,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: f192b639717bd4c41aab5e486e51226a,
+      type: 3}
+  - m_OriginalClip: {fileID: -8027762958245328840, guid: 3d057b8a0ee395546ae7710fd54b520c,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: e7fb82b51c71b864ab996f024db8b098,
+      type: 3}
+  - m_OriginalClip: {fileID: 6517725740988280534, guid: f9604867929a01a49b042bce7d24f3ab,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: dccc26e5de456854fa56e11026d390db,
+      type: 3}
+  - m_OriginalClip: {fileID: 2451246440994381299, guid: 33446e854eb79844d91b327296d727fe,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 470efe3106b2a6548a7b6c2ae2ed5476,
+      type: 3}

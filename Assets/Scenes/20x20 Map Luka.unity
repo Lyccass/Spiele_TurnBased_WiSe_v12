@@ -1553,6 +1553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 0}
+  gameWonPanel: {fileID: 0}
+  gamePausedPanel: {fileID: 0}
 --- !u!1 &346667658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,6 +1623,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGameState: 0
   currentGameMode: 0
+  enemies: 1
+  killedEnemies: 0
+  boss: 0
+  chest: 0
+  unitManager: {fileID: 2094990958}
 --- !u!4 &352726737
 Transform:
   m_ObjectHideFlags: 0
@@ -1630,11 +1637,11 @@ Transform:
   m_GameObject: {fileID: 352726735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8447267, y: 0.6410278, z: 4.392911}
+  m_LocalPosition: {x: 2.51, y: 1.3825992, z: 3.9561224}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1971762072}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377038426
 GameObject:
@@ -2062,6 +2069,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballProjectilePrefab: {fileID: 0}
   maxFireballDistance: 2
+--- !u!114 &391974711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5346639918755459091, guid: e6471af187792624b849d97576ac3940,
+    type: 3}
+  m_PrefabInstance: {fileID: 268242485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12972037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9eac0427190984b80167a9b1a93cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &398265701
 GameObject:
   m_ObjectHideFlags: 0
@@ -4118,7 +4137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bda379c31139164dac70f6479633728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedUnit: {fileID: 1490009925}
+  selectedUnit: {fileID: 391974711}
   unitsLayerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -4183,7 +4202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotationSpeed: 100
-  zoomAmount: 1
+  zoomIncreaseAmount: 1
   zoomSpeed: 5
   cinemachineVirtualCamera: {fileID: 1278974899}
 --- !u!1 &974359658
@@ -5839,18 +5858,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1495911906}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1490009925 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5346639918755459091, guid: e6471af187792624b849d97576ac3940,
-    type: 3}
-  m_PrefabInstance: {fileID: 1495911906}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd9eac0427190984b80167a9b1a93cd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1495562947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7055,7 +7062,6 @@ Transform:
   - {fileID: 420128474}
   - {fileID: 1601579244}
   - {fileID: 2094990959}
-  - {fileID: 352726737}
   - {fileID: 1439244650}
   - {fileID: 655352886}
   m_Father: {fileID: 0}
@@ -7358,6 +7364,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 388615619}
   - {fileID: 188587766}
+  - {fileID: 352726737}
   - {fileID: 1971762072}
   - {fileID: 346667659}
   - {fileID: 1340427835}
