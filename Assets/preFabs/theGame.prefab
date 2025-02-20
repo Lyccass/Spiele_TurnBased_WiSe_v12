@@ -61,6 +61,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 683631219348586991, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1445659305946804037, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -74,12 +79,22 @@ PrefabInstance:
     - target: {fileID: 1861716854331340510, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2016597653496101170, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685833315448275058, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924055824283823415, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3091847872073525802, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
@@ -120,6 +135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056356319396985387, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5351452179645550337, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
@@ -226,6 +246,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6125247410477239948, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6466032748797844325, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -236,10 +261,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadMap
       objectReference: {fileID: 0}
+    - target: {fileID: 7588567101852516014, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8001384522083082451, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642908419238182185, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8973317584314645955, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
