@@ -3,63 +3,38 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
-    public static event EventHandler OnAnyDoorOpened;
-    public event EventHandler OnDoorOpened;
+    public static event EventHandler OnAnyDoorOpened; // Event for any door opening
+    public event EventHandler OnDoorOpened; // Event for this specific door opening
 
-    [SerializeField] private bool isOpen;
-    [SerializeField] private bool isChest;
-    [SerializeField] private Door linkedDoor;
-    [SerializeField] private LinkedInteractable linkedInteractable;
-     public LinkedInteractable LinkedInteractable
-    {
-        get => linkedInteractable;
-        set => linkedInteractable = value;
-    }
-
-
-    
-    private GridPosition gridPosition;
-    private Animator animator;
-    private Action onInteractComplete;
-    private bool isActive;
-    private float timer;
-    public bool IsOpen => isOpen;
+    [SerializeField] private bool isOpen; // Tracks if the door starts open
+    [SerializeField] private bool isChest; // chest interactable
+    private GridPosition gridPosition; // Grid position of the door
+    private Animator animator; // Animator component
+    private Action onInteractComplete; // Callback when interaction completes
+    private bool isActive; // Is the door currently interacting
+    private float timer; // Timer for interaction duration
 
     private void Awake()
     {
-        animator = GetComponent<Animator>(); // Attempt to assign the Animator
-
-        if (animator == null)
-        {
-            Debug.LogWarning($"{gameObject.name} does not have an Animator component.");
-        }
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
-{
-    gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
-
-    // Register door as interactable only if no linked interactable
-    if (linkedInteractable == null)
     {
+        gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        Debug.Log($"{gameObject.name} - Grid Position: {gridPosition}");
+
         LevelGrid.Instance.SetInteractableAtGridPosition(gridPosition, this);
-        Debug.Log($"{gameObject.name} registered as interactable.");
-    }
-    else
-    {
-        Debug.Log($"{gameObject.name} is controlled by {linkedInteractable.gameObject.name} and will not be directly interactable.");
-    }
 
-    if (isOpen)
-    {
-        OpenDoor();
+        if (isOpen)
+        {
+            OpenDoor();
+        }
+        else
+        {
+            CloseDoor();
+        }
     }
-    else
-    {
-        CloseDoor();
-    }
-}
-
 
     private void Update()
     {
@@ -69,92 +44,63 @@ public class Door : MonoBehaviour, IInteractable
         if (timer <= 0f)
         {
             isActive = false;
-            onInteractComplete?.Invoke();
+            onInteractComplete?.Invoke(); // Safeguard to avoid null references
         }
     }
-public void Interact(Action onInteractComplete)
-{
-    
-    if (isActive) return;
 
-    this.onInteractComplete = onInteractComplete;
-    isActive = true;
-    timer = 0.5f;
+    public void Interact(Action onInteractComplete)
+    {
+        if (isActive) return; // Prevent overlapping interactions
 
-    if (isChest && !isOpen)
-    {
-        OpenChest();
-    }
-    else if (!isChest)
-    {
-        if (isOpen)
+        this.onInteractComplete = onInteractComplete;
+        isActive = true;
+        timer = 0.5f; // Interaction duration
+
+        if (isChest && !isOpen)
         {
-            CloseDoor();
-
-            // Close linked door if it's open
-            if (linkedDoor != null && linkedDoor.IsOpen)
+            OpenChest();
+        }
+        else if (!isChest)
+        {
+            if (isOpen)
             {
-                linkedDoor.CloseDoor();
-                Debug.Log($"Linked door {linkedDoor.name} closed!");
+                CloseDoor();
+            }
+            else
+            {
+                OpenDoor();
             }
         }
-        else
+        else 
         {
-            OpenDoor();
-
-            // Open linked door if it's closed
-            if (linkedDoor != null && !linkedDoor.IsOpen)
-            {
-                linkedDoor.OpenDoor();
-                Debug.Log($"Linked door {linkedDoor.name} opened!");
-            }
+            return;
         }
     }
-}
-
 
     private void OpenChest()
     {
         isOpen = true;
-
-        if (animator != null)
-        {
-            animator.SetTrigger("Open");
-        }
-
-        GameManager.Instance.chest--;
+        animator.SetTrigger("Open"); //insert animation lmao
+        GameManager.Instance.chest --;
         Debug.Log($"Chest opened! Remaining chests: {GameManager.Instance.chest}");
     }
 
-   public void OpenDoor()
-{
-    if (isOpen) return;
-
-    isOpen = true;
-    Debug.Log($"Door {gameObject.name} is now open. (isOpen: {isOpen})");
-
-    if (animator != null)
+    private void OpenDoor()
     {
+        isOpen = true;
         animator.SetBool("IsOpen", isOpen);
+        Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, true);
+
+        // Trigger events when the door is opened
+        OnDoorOpened?.Invoke(this, EventArgs.Empty);
+        OnAnyDoorOpened?.Invoke(this, EventArgs.Empty);
+
     }
 
-    Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, true);
-    OnDoorOpened?.Invoke(this, EventArgs.Empty);
-    OnAnyDoorOpened?.Invoke(this, EventArgs.Empty);
-}
-
-public void CloseDoor()
-{
-    if (!isOpen) return;
-
-    isOpen = false;
-    Debug.Log($"Door {gameObject.name} is now closed. (isOpen: {isOpen})");
-
-    if (animator != null)
+    private void CloseDoor()
     {
+        isOpen = false;
         animator.SetBool("IsOpen", isOpen);
+        Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, false);
     }
-
-    Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, false);
-}
 }

@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource, sfxSource, uiSource;
 
     public string[] musicPlaylist;
-    private int currentMusicIndex = 2;
+    private int currentMusicIndex = 0;
     private bool musicStopped = false;
 
     private void Awake()

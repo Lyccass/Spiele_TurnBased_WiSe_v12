@@ -2,23 +2,18 @@ using UnityEngine;
 
 public class HidePanelAfterTime : MonoBehaviour
 {
-    public GameObject uiPanel;        // The UI panel to hide
-    public float hideDelay = 12f;     // Time in seconds before the panel becomes invisible
-
-    private static bool panelIsDeactivated = false;  // Static variable to track the panel state
+    public GameObject uiPanel;        // Das UI-Panel, das ausgeblendet werden soll
+    public float hideDelay = 12f;    // Zeit in Sekunden, bis das Panel unsichtbar wird
 
     private void Start()
     {
-        // If the panel was previously deactivated, make sure it stays deactivated
-        if (panelIsDeactivated)
+        if (uiPanel != null)
         {
-            uiPanel.SetActive(false);
+            Invoke(nameof(HidePanel), hideDelay); // Blendet das Panel nach der angegebenen Zeit aus
         }
         else
         {
-            // Set the panel to active and start the timer to deactivate it
-            uiPanel.SetActive(true);
-            Invoke(nameof(HidePanel), hideDelay);
+            Debug.LogWarning("UI-Panel ist nicht zugewiesen!");
         }
     }
 
@@ -26,8 +21,7 @@ public class HidePanelAfterTime : MonoBehaviour
     {
         if (uiPanel != null)
         {
-            uiPanel.SetActive(false);  // Deactivate the panel
-            panelIsDeactivated = true; // Set the static variable to indicate panel is deactivated
+            uiPanel.SetActive(false); // Deaktiviert das Panel
         }
     }
 }

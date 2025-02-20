@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7750370834966309250
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 59e1744f03f42b349a02d3e08149e37a, type: 2}
+  - {fileID: 2100000, guid: 27b91a8b18c08704f92e2e881d51936b, type: 2}
   - {fileID: 2100000, guid: 87ef1b741c991cc44898b25b9d6d4ace, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

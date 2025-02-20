@@ -8,8 +8,7 @@ public class UnitManager : MonoBehaviour
     public static UnitManager Instance{get; private set;}  
     private List<Unit> unitList;
     private List<Unit> friendlyUnitList;
-    private List<Unit> enemyUnitList;
-    private Unit bossUnit;
+    private List<Unit> enemyUnitList;  
     
 
 
@@ -32,13 +31,6 @@ public class UnitManager : MonoBehaviour
         Unit.OnAnyUnitDead +=  Unit_OnAnyUnitDead;
     }
 
-      private void OnDestroy()
-    {
-        // Unsubscribe from events to avoid duplicate calls
-        Unit.OnAnyUnitSpawned -= Unit_OnAnyUnitSpawned;
-        Unit.OnAnyUnitDead -= Unit_OnAnyUnitDead;
-    }
-
     private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
     {
         Unit unit = sender as Unit;
@@ -48,10 +40,6 @@ public class UnitManager : MonoBehaviour
         if(unit.IsEnemy())
         {
             enemyUnitList.Add(unit);
-            if (unit.CompareTag("Boss")){
-                bossUnit = unit;
-                Debug.Log("Boss spawned!");
-            }
         }
         else
         {
@@ -72,12 +60,11 @@ public class UnitManager : MonoBehaviour
             GameManager.Instance.enemies --;
             GameManager.Instance.killedEnemies ++;
             Debug.Log($"Enemy killed. Remaining enemies: {GameManager.Instance.enemies}");
-            if(GameManager.Instance.currentGameMode == GameMode.Assasination && unit == bossUnit)
+            if(GameManager.Instance.currentGameMode == GameMode.Elimination && unit.CompareTag("boss"))
                 {
                     GameManager.Instance.boss --;
                     Debug.Log($"Boss defeated! Remaining bosses: {GameManager.Instance.boss}");
                 }
-            
         }
         else
         {

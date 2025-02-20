@@ -11,32 +11,12 @@ PrefabInstance:
     - target: {fileID: -5222086369271068288, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: health
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: -2179808354589893823, guid: e6471af187792624b849d97576ac3940,
-        type: 3}
-      propertyPath: maxDamage
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -2179808354589893823, guid: e6471af187792624b849d97576ac3940,
-        type: 3}
-      propertyPath: minDamage
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
-        type: 3}
-      propertyPath: maxDamage
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
-        type: 3}
-      propertyPath: minDamage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 452766894031091776, guid: e6471af187792624b849d97576ac3940,
         type: 3}
@@ -47,12 +27,7 @@ PrefabInstance:
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 6707128001022161046}
-    - target: {fileID: 2327177680439709333, guid: e6471af187792624b849d97576ac3940,
-        type: 3}
-      propertyPath: shootPointTransform
-      value: 
-      objectReference: {fileID: 4373824680438110966}
+      objectReference: {fileID: 2549144550930120268}
     - target: {fileID: 2327177680439709333, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: characterAnimatorOverride
@@ -63,13 +38,8 @@ PrefabInstance:
         type: 3}
       propertyPath: ragdollPrefab
       value: 
-      objectReference: {fileID: 693961503423672016, guid: a910c58114620344fbfa81102c32962b,
+      objectReference: {fileID: 693961503423672016, guid: fc360703ab856d14084169106570d387,
         type: 3}
-    - target: {fileID: 2790831320528014335, guid: e6471af187792624b849d97576ac3940,
-        type: 3}
-      propertyPath: originalRootBone
-      value: 
-      objectReference: {fileID: 9005783940449382237}
     - target: {fileID: 3807745868216022751, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: m_Mesh
@@ -164,11 +134,6 @@ PrefabInstance:
         type: 3}
       propertyPath: isEnemy
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8951325758057648784, guid: e6471af187792624b849d97576ac3940,
-        type: 3}
-      propertyPath: maxMoveDistance
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -276,7 +241,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 40401408502052646b701b508c7e2c43,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6707128001022161046}
+      addedObject: {fileID: 2549144550930120268}
   m_SourcePrefab: {fileID: 100100000, guid: 40401408502052646b701b508c7e2c43, type: 3}
 --- !u!4 &3971511862482805416 stripped
 Transform:
@@ -290,7 +255,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3501299680664667459}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &6707128001022161046
+--- !u!95 &2549144550930120268
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -299,9 +264,9 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4347790392825608210}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 40401408502052646b701b508c7e2c43, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 22100000, guid: 6677f248df63ae248b625171c806ac7f, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -311,15 +276,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!4 &4373824680438110966 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 875369438640955317, guid: 40401408502052646b701b508c7e2c43,
-    type: 3}
-  m_PrefabInstance: {fileID: 3501299680664667459}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &9005783940449382237 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -3716062032184481250, guid: 40401408502052646b701b508c7e2c43,
-    type: 3}
-  m_PrefabInstance: {fileID: 3501299680664667459}
-  m_PrefabAsset: {fileID: 0}
