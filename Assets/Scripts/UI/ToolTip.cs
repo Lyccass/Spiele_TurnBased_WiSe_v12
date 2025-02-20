@@ -10,7 +10,7 @@ public class Tooltip : MonoBehaviour
     [SerializeField] private GameObject tooltipUI;         // Tooltip UI GameObject
     [SerializeField] private TextMeshProUGUI tooltipText;  // TextMeshPro component for tooltip text
     [SerializeField] private CanvasGroup canvasGroup;      // CanvasGroup for fading
-    [SerializeField] private float hoverDelay = 1.5f;      // Delay before showing tooltip
+    [SerializeField] private float hoverDelay = .5f;      // Delay before showing tooltip
     [SerializeField] private float fadeDuration = 0.5f;    // Duration for fade-in
 
     private RectTransform tooltipRectTransform;

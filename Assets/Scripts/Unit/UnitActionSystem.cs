@@ -19,7 +19,7 @@ public class UnitActionSystem : MonoBehaviour
    [SerializeField] private LayerMask unitsLayerMask;
 
    private BaseAction selectedAction;
-    private bool isBusy;    
+    public bool isBusy;    
 
 
    private void Awake()
@@ -150,5 +150,9 @@ private void HandleSelectedAction()
    {
     return selectedAction;
    }
+public bool IsBusy()
+{
+    return isBusy; // Assuming you have a `bool isBusy` that tracks action states
+}
 
 }
