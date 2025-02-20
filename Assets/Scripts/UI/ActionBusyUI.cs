@@ -22,7 +22,7 @@ private void Hide()
 
 private void UnitActionSystem_OnBusyChange(object sender, bool isBusy)
 {
-    if(isBusy)
+    if (isBusy)
     {
         Show();
     }
@@ -30,5 +30,9 @@ private void UnitActionSystem_OnBusyChange(object sender, bool isBusy)
     {
         Hide();
     }
+
+    // Also update enemy turn UI when busy state changes
+    FindObjectOfType<TurnSystemUI>().UpdateEnemyTurnVisual();
 }
+
 }
