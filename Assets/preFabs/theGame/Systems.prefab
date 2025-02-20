@@ -97,6 +97,9 @@ MonoBehaviour:
   hider3List:
   - {fileID: 0}
   - {fileID: 0}
+  hider4List: []
+  hider5List: []
+  Allay1List: []
   enemy1List:
   - {fileID: 0}
   enemy2List:
@@ -105,8 +108,7 @@ MonoBehaviour:
   - {fileID: 0}
   enemy3List:
   - {fileID: 0}
-  door1: {fileID: 0}
-  door2: {fileID: 0}
+  enemy4List: []
 --- !u!1 &538943471718666822
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,27 +438,27 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8974938955564680597}
+  - {fileID: 160461060382193299}
+  - {fileID: 920509926130024345}
+  - {fileID: 7366907878653380471}
+  - {fileID: 7535676229880752762}
+  - {fileID: 6915656311318862975}
+  - {fileID: 2158239937280105133}
+  - {fileID: 4855269136370609093}
+  - {fileID: 601480085814720130}
   - {fileID: 7838829618052902282}
   - {fileID: 3758249141112730638}
-  - {fileID: 7535676229880752762}
   - {fileID: 4150978353472641340}
   - {fileID: 220787009520127571}
   - {fileID: 1708552881323776007}
-  - {fileID: 6915656311318862975}
-  - {fileID: 7366907878653380471}
-  - {fileID: 4855269136370609093}
   - {fileID: 2291394938815726836}
-  - {fileID: 920509926130024345}
-  - {fileID: 2158239937280105133}
-  - {fileID: 8974938955564680597}
-  - {fileID: 601480085814720130}
   - {fileID: 8344212385871702280}
   - {fileID: 382958263238781781}
   - {fileID: 7131364639543214700}
   - {fileID: 4623652614185619935}
   - {fileID: 8574971913754924371}
   - {fileID: 6282057477287254008}
-  - {fileID: 160461060382193299}
   - {fileID: 3732232490948599404}
   - {fileID: 6682185365530136461}
   - {fileID: 8717479466477902709}
