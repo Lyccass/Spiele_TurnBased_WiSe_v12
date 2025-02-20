@@ -120,6 +120,11 @@ PrefabInstance:
       propertyPath: isEnemy
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8309453892147863063, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8951325758057648784, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: maxMoveDistance

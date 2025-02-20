@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5994361660759164970}
   - component: {fileID: 7622780603929803510}
   - component: {fileID: -5486892817007707448}
-  - component: {fileID: -7612670401489343926}
+  - component: {fileID: 7569957199899303932}
   - component: {fileID: 1034555290831278549}
   m_Layer: 7
   m_Name: Unit Healer
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDamage: 2
   maxDamage: 4
---- !u!114 &-7612670401489343926
+--- !u!114 &7569957199899303932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,15 +189,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 452766894031091776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5038afbe1d983408db8e3c12372f3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7157f6c2a52d3c24fbe2fa5a2297cc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  maxRangedDistance: 4
-  minDamage: 1
-  maxDamage: 3
+  maxHealDistance: 5
+  minHealAmount: 3
+  maxHealAmount: 6
 --- !u!114 &1034555290831278549
 MonoBehaviour:
   m_ObjectHideFlags: 0
