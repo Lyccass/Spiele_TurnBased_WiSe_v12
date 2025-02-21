@@ -34,7 +34,7 @@ private void TurnSystem_OnTurnChange(object sender, EventArgs e)
 private void UpdateTurnText()
 
 {
-  activeTurn.text = "Active Turn: " + TurnSystem.Instance.GetTurnNumber();
+  activeTurn.text = "Turn: " + TurnSystem.Instance.GetTurnNumber();
 }
 
 public void UpdateEnemyTurnVisual()
