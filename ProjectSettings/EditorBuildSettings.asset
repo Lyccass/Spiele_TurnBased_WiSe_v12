@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
-    path: Assets/Scenes/20x20 Map Farah.unity
+    path: Assets/Scenes/Forest_Hunt_20x20_WRONG.unity
     guid: f849f937323769445b3cebab122b6a33
   - enabled: 0
     path: Assets/Scenes/20x20 Map FarahFruck.unity
