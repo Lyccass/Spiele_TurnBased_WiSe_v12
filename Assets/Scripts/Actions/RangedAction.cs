@@ -165,6 +165,7 @@ public class RangedAction : BaseAction
         targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
 
         state = State.Aiming;
+        AudioManager.Instance.PlaySFX("RangedAttack");
         stateTimer = 1f;
         hasShot = false;  // Rücksetzen, damit der Schuss erst im richtigen Moment passiert
 

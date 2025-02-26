@@ -30,6 +30,7 @@ public class LinkedInteractable : MonoBehaviour, IInteractable
         }
 
         this.onInteractComplete = onInteractComplete;
+        AudioManager.Instance.PlaySFX("Lever");
 
         // Toggle door state
         if (linkedDoor.IsOpen) // Use a public property or method in the Door class to check if the door is open

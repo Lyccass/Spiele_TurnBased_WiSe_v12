@@ -11,14 +11,24 @@ public class UnitActionUnlocker : MonoBehaviour
 
     private void Start()
     {
+        bool anyActionUnlocked = false;
+
         // Ensure pre-unlocked actions are added at the beginning
         foreach (BaseAction action in preUnlockedActions)
         {
-            if (action != null)
+            if (action != null && !unlockedActions.Contains(action))
             {
                 action.UnlockAction();
                 unlockedActions.Add(action);
+                anyActionUnlocked = true;
             }
+        }
+
+        // Force UI to update if any action was unlocked at the start
+        if (anyActionUnlocked)
+        {
+            Debug.Log("Pre-unlocked actions applied. Refreshing UI.");
+            OnUnlockNewAction?.Invoke();
         }
     }
 

@@ -53,10 +53,12 @@ public class Door : MonoBehaviour, IInteractable
     if (isOpen)
     {
         OpenDoor();
+      
     }
     else
     {
         CloseDoor();
+        
     }
 }
 
@@ -90,6 +92,7 @@ public void Interact(Action onInteractComplete)
         if (isOpen)
         {
             CloseDoor();
+            AudioManager.Instance.PlaySFX("DoorClose");
 
             // Close linked door if it's open
             if (linkedDoor != null && linkedDoor.IsOpen)
@@ -101,7 +104,7 @@ public void Interact(Action onInteractComplete)
         else
         {
             OpenDoor();
-
+            AudioManager.Instance.PlaySFX("DoorOpen");
             // Open linked door if it's closed
             if (linkedDoor != null && !linkedDoor.IsOpen)
             {
