@@ -36,6 +36,6 @@ EditorBuildSettings:
     path: Assets/Scenes/25x25 Map Liz.unity
     guid: 4d0ee7fc7f247ad4dafebe584ed289ca
   - enabled: 0
-    path: Assets/Scenes/Jacky.unity
+    path: Assets/Scenes/JackyHunt.unity
     guid: fb1e06ea405ea2a4db491ea6d93479a0
   m_configObjects: {}
