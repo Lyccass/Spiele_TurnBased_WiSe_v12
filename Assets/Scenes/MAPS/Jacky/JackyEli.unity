@@ -43989,6 +43989,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1877394, y: 1.136266, z: 0.9298592}
   m_Center: {x: 0.0046254992, y: 0.56813264, z: 0.010834052}
+--- !u!82 &790074243 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9175672499659146631, guid: 7863d7d44270b594daeacf9d364ba547,
+    type: 3}
+  m_PrefabInstance: {fileID: 1669765406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &792319675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5682264896176227125, guid: 8bd0e735a9bb34b4eac78c42678bcf63,
@@ -89518,6 +89524,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6169026552938613059, guid: 7863d7d44270b594daeacf9d364ba547,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 790074243}
+    - target: {fileID: 6169026552938613059, guid: 7863d7d44270b594daeacf9d364ba547,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 6397175328106748781, guid: 7863d7d44270b594daeacf9d364ba547,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -89613,11 +89629,43 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9175672499659146631, guid: 7863d7d44270b594daeacf9d364ba547,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bb08b350495b2ff4a869813e1c381010, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6419720867008865781, guid: 7863d7d44270b594daeacf9d364ba547,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1669765408}
   m_SourcePrefab: {fileID: 100100000, guid: 7863d7d44270b594daeacf9d364ba547, type: 3}
+--- !u!1 &1669765407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6419720867008865781, guid: 7863d7d44270b594daeacf9d364ba547,
+    type: 3}
+  m_PrefabInstance: {fileID: 1669765406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1669765408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669765407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250c68ab8882e4b4990e62dd263ad7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapName: JackyEli
+  tutorialTriggers:
+  - triggerPosition: {x: 0, y: 0}
+    messages:
+    - 
 --- !u!1001 &1670531379
 PrefabInstance:
   m_ObjectHideFlags: 0
