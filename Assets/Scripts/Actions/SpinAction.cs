@@ -33,9 +33,9 @@ public class SpinAction : BaseAction
         return spinCount; 
     }
     public static void ResetSpinCount()
-{
-    spinCount = 0;
-}
+    {
+        spinCount = 0;
+    }
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
        
