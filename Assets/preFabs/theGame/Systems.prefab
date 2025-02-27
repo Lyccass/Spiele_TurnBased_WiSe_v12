@@ -89,26 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687c4581df4bdff47962c3e37466e4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hider1List:
-  - {fileID: 0}
-  - {fileID: 0}
-  hider2List:
-  - {fileID: 0}
-  hider3List:
-  - {fileID: 0}
-  - {fileID: 0}
-  hider4List: []
-  hider5List: []
-  Allay1List: []
-  enemy1List:
-  - {fileID: 0}
-  enemy2List:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemy3List:
-  - {fileID: 0}
-  enemy4List: []
+  currentMapName: FirstMap
+  mapFogTriggers: []
 --- !u!1 &538943471718666822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +985,7 @@ MonoBehaviour:
   zoomIncreaseAmount: 1
   zoomSpeed: 5
   cinemachineVirtualCamera: {fileID: 995940948650340814}
+  initialPositionXZ: {x: 0, y: 0}
 --- !u!1 &5756555287807046284
 GameObject:
   m_ObjectHideFlags: 0
