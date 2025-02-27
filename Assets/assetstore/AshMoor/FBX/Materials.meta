@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Shaders/Fog.meta
+guid: f858525df1fc0b3409a10d6b97103aee
+========
 guid: 08bc8152f4e3dea42ab139e9045c2cbe
+>>>>>>>> origin/Alec:Assets/assetstore/AshMoor/FBX/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
