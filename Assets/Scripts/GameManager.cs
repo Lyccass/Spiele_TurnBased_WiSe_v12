@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int boss;
     [SerializeField] public int chest;
     public UnitManager unitManager;
+    [SerializeField] private UnitActionSystemUI unitActionSystemUI;
 
     
     private void Awake()
@@ -60,22 +61,34 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded) return;
 
+        
         switch (currentGameMode)
         {
             case GameMode.Elimination:
             CheckEliminationConditions();
+            CheckSpinConditions();
             break;
 
             case GameMode.Hunt:
             CheckHuntConditions();
+            CheckSpinConditions();
             break;
 
             case GameMode.Assasination:
             CheckAssasinationConditions();
+            CheckSpinConditions();
             break;
         } 
     }
 
+    void CheckSpinConditions()
+    {   
+        int counter = SpinAction.GetspinCount();
+        if (counter >= 2)
+        {
+            GameOver("Win");
+        }
+    }
     void CheckEliminationConditions()
     {
 
@@ -122,17 +135,29 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void GameOver(string result)
-    {
-        gameEnded = true;
-        currentGameState = GameState.GameOver;
-        Debug.Log("Game Over! Result: " + result);
-        Time.timeScale = 0f; // Freeze game time
+  
+void GameOver(string result)
+{
+    StartCoroutine(DelayedGameOver(result));
+    currentGameState = GameState.GameOver;
+    SpinAction.ResetSpinCount();
+}
 
-         // Show a win/lose screen
-        GameManagerUI.Instance.ShowGameOverScreen(result);
-       
-    }
+private IEnumerator DelayedGameOver(string result)
+{
+    yield return new WaitForSeconds(1.5f);  
+
+    gameEnded = true;
+    unitActionSystemUI.DisableUI(true);
+    Debug.Log("Game Over! Result: " + result);  // Use the class-level variable
+    Time.timeScale = 0f; // Freeze game time
+
+    // Show a win/lose screen
+    GameManagerUI.Instance.ShowGameOverScreen(result);
+}
+
+        
+    
 
     public void PauseGame()
     {
@@ -140,6 +165,7 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.Pause;
         Debug.Log("Game Paused.");
         Time.timeScale = 0f;
+        unitActionSystemUI.DisableUI(true);
 
         GameManagerUI.Instance.ShowPausedScreen();
     }
@@ -150,6 +176,7 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.Playing;
         Debug.Log("Game Resumed.");
         Time.timeScale = 1f;
+        unitActionSystemUI.DisableUI(false);
 
         GameManagerUI.Instance.HidePausedScreen();
     }
