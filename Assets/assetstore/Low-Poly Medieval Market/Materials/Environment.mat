@@ -22,8 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Environment
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 8739231132553158495, guid: f62b0587c83d49a4ab1186ff5d37822c,
-    type: 3}
+  m_Parent: {fileID: 2100000, guid: df9475e5cbbaf974da71552dbda4b109, type: 2}
   m_ModifiedSerializedProperties: 10
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -53,6 +52,6 @@ Material:
     - _GlossyReflections: 0
     - _Parallax: 0.005
     m_Colors:
-    - _BaseColor: {r: 0.22077382, g: 0.28930807, b: 0.18104497, a: 1}
-    - _Color: {r: 0.22077379, g: 0.28930804, b: 0.18104494, a: 1}
+    - _BaseColor: {r: 0.46540874, g: 0.46540874, b: 0.46540874, a: 1}
+    - _Color: {r: 0.46540874, g: 0.46540874, b: 0.46540874, a: 1}
   m_BuildTextureStacks: []
