@@ -9568,6 +9568,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Unit Mushroom (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 530346253598091253, guid: 64906608bd4c313439f3926c170ac440,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1524410323285126489, guid: 64906608bd4c313439f3926c170ac440,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -15243,6 +15248,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Unit Eyeball
       objectReference: {fileID: 0}
+    - target: {fileID: 530346253598091253, guid: 0071937cd1b19e849ae2685a7bc86b6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1524410323285126489, guid: 0071937cd1b19e849ae2685a7bc86b6c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -20133,7 +20143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5606288, y: -0.0000000089255, z: 0.0000000060428578, w: 0.8280673}
+  m_LocalRotation: {x: 0.5606288, y: 0, z: 0, w: 0.8280673}
   m_LocalPosition: {x: 5.96, y: 24.99999, z: -0.47999954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37719,6 +37729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit Healer
       objectReference: {fileID: 0}
+    - target: {fileID: 452766894031091776, guid: adc555006853d1e4b856b93047741bbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 949663521706928666, guid: adc555006853d1e4b856b93047741bbf,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -39029,6 +39044,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Unit Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 452766894031091776, guid: 5b6ff4cbf0430024ea17aff4d6f6c2ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1455627020228817644, guid: 5b6ff4cbf0430024ea17aff4d6f6c2ea,
         type: 3}
@@ -47986,6 +48006,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Unit Eyeball
+      objectReference: {fileID: 0}
+    - target: {fileID: 530346253598091253, guid: 0071937cd1b19e849ae2685a7bc86b6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1524410323285126489, guid: 0071937cd1b19e849ae2685a7bc86b6c,
         type: 3}
@@ -63378,7 +63403,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 180889079}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 180889080}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90df1e49a0ad5354daaddde0c91c1522, type: 3}
@@ -63390,7 +63415,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 180889079}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 180889080}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e5038afbe1d983408db8e3c12372f3f, type: 3}
@@ -63402,7 +63427,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 180889079}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 180889080}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbae7708d85aa3b4e86ba9f8c9115817, type: 3}
@@ -63414,7 +63439,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 180889079}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 180889080}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 703fe339f80754d458b71ddb2a549646, type: 3}
@@ -72379,6 +72404,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Unit Mushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 530346253598091253, guid: 64906608bd4c313439f3926c170ac440,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1524410323285126489, guid: 64906608bd4c313439f3926c170ac440,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -75239,6 +75269,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Unit Eyeball
+      objectReference: {fileID: 0}
+    - target: {fileID: 530346253598091253, guid: 0071937cd1b19e849ae2685a7bc86b6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1524410323285126489, guid: 0071937cd1b19e849ae2685a7bc86b6c,
         type: 3}
@@ -96184,6 +96219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Unit Eyeball (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 530346253598091253, guid: 0071937cd1b19e849ae2685a7bc86b6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1524410323285126489, guid: 0071937cd1b19e849ae2685a7bc86b6c,
         type: 3}

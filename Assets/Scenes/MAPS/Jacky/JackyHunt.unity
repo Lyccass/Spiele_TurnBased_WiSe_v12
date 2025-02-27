@@ -37710,6 +37710,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit Healer
       objectReference: {fileID: 0}
+    - target: {fileID: 452766894031091776, guid: adc555006853d1e4b856b93047741bbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 949663521706928666, guid: adc555006853d1e4b856b93047741bbf,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -39020,6 +39025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Unit Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 452766894031091776, guid: 5b6ff4cbf0430024ea17aff4d6f6c2ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1455627020228817644, guid: 5b6ff4cbf0430024ea17aff4d6f6c2ea,
         type: 3}
