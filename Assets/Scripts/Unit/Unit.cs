@@ -12,7 +12,7 @@ public class Unit : MonoBehaviour
     public static event EventHandler OnAnyUnitSpawned;
     public static event EventHandler OnAnyUnitDead;
     [SerializeField] private bool isEnemy;  
-    private HealthSystem healthSystem;
+    public HealthSystem healthSystem;
     private GridPosition gridPosition;
     [SerializeField] public int MaxActionPoints = 2;
     private BaseAction[] baseActionArray;
