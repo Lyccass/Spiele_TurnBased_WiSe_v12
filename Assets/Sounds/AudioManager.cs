@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement; // Required for scene detection
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,9 +11,18 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds, uiSounds;
     public AudioSource musicSource, sfxSource, uiSource;
 
-    public string[] musicPlaylist;
-    private int currentMusicIndex = 2;
+    private string[] currentPlaylist; // The active playlist
+    private int currentMusicIndex = 0;
     private bool musicStopped = false;
+
+    // Define different playlists for different maps
+    private Dictionary<string, string[]> mapPlaylists = new Dictionary<string, string[]>()
+    {
+        { "Tutorial", new string[] { "Inagme_1" } },
+        { "Hub", new string[] { "Inagme_2" } },
+        { "MainMenu - UI", new string[] { "Inagme_3" } },
+        { "Map - UI", new string[] { "Inagme_3" } }
+    };
 
     private void Awake()
     {
@@ -29,52 +39,74 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        StartPlaylist();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SetPlaylistForScene(SceneManager.GetActiveScene().name); // Set initial music
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Update()
     {
-        if (!musicSource.isPlaying && !musicStopped)
+        if (!musicSource.isPlaying && !musicStopped && currentPlaylist.Length > 0)
         {
             PlayNextMusic();
         }
     }
 
-    public void StartPlaylist()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log($"Scene Loaded: {scene.name}");
+        SetPlaylistForScene(scene.name);
+    }
 
-        musicStopped = false;
-
-        if (musicPlaylist.Length > 0)
+    private void SetPlaylistForScene(string sceneName)
+    {
+        if (mapPlaylists.ContainsKey(sceneName))
         {
-            PlayMusic(musicPlaylist[currentMusicIndex]);
+            currentPlaylist = mapPlaylists[sceneName];
+            currentMusicIndex = 0;
+            Debug.Log($"🎵 Playlist set for scene: {sceneName}. Now playing: {currentPlaylist[currentMusicIndex]}");
+            PlayMusic(currentPlaylist[currentMusicIndex]); // Play first song
         }
         else
         {
-            Debug.Log("Playlist is empty");
+            Debug.Log($"❌ No specific playlist for scene: {sceneName}. Stopping music.");
+            StopMusic();
         }
     }
 
     public void PlayNextMusic()
     {
-        currentMusicIndex = (currentMusicIndex + 1) % musicPlaylist.Length;
-        PlayMusic(musicPlaylist[currentMusicIndex]);
+        if (currentPlaylist.Length == 0) return;
+
+        currentMusicIndex = (currentMusicIndex + 1) % currentPlaylist.Length;
+        Debug.Log($"🎵 Switching to next track: {currentPlaylist[currentMusicIndex]}");
+        PlayMusic(currentPlaylist[currentMusicIndex]);
     }
 
     public void PlayMusic(string name)
     {
         musicStopped = false;
-
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
         if (s == null)
         {
-            Debug.Log("Sound Not Found");
+            Debug.Log($"❌ Sound Not Found: {name}");
         }
         else
         {
+            if (musicSource.clip == s.clip && musicSource.isPlaying)
+            {
+                Debug.Log($"⚠️ Music '{name}' is already playing.");
+                return; // Prevent restarting the same track
+            }
+
             musicSource.clip = s.clip;
             musicSource.Play();
+            Debug.Log($"🎵 Now Playing: {name}");
         }
     }
 
@@ -83,58 +115,62 @@ public class AudioManager : MonoBehaviour
         if (musicSource.isPlaying && !musicStopped)
         {
             musicStopped = true;
-
             musicSource.Stop();
+            Debug.Log("🛑 Music Stopped.");
         }
     }
 
     public void PlaySFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
-
         if (s == null)
         {
-            Debug.Log("Sound Not Found");
+            Debug.Log($"❌ SFX Sound Not Found: {name}");
         }
         else
         {
             sfxSource.PlayOneShot(s.clip);
+            Debug.Log($"🔊 Playing SFX: {name}");
         }
     }
 
     public void PlayUI(string name)
     {
         Sound s = Array.Find(uiSounds, x => x.name == name);
-
         if (s == null)
         {
-            Debug.Log("Sound Not Found");
+            Debug.Log($"❌ UI Sound Not Found: {name}");
         }
         else
         {
             uiSource.PlayOneShot(s.clip);
+            Debug.Log($"🖱️ Playing UI Sound: {name}");
         }
     }
 
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
+        Debug.Log($"🎵 Music Muted: {musicSource.mute}");
     }
 
     public void ToggleSFX()
     {
         sfxSource.mute = !sfxSource.mute;
         uiSource.mute = !uiSource.mute;
+        Debug.Log($"🔊 SFX Muted: {sfxSource.mute}");
     }
 
     public void MusicVolume(float volume)
     {
         musicSource.volume = volume;
+        Debug.Log($"🎚️ Music Volume Set To: {volume}");
     }
 
     public void SFXVolume(float volume)
     {
         sfxSource.volume = volume;
         uiSource.volume = volume;
+        Debug.Log($"🎚️ SFX Volume Set To: {volume}");
     }
 }
