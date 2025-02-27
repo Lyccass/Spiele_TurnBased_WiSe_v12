@@ -2,23 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using System;
 
 public class UnitWorldUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI actionPointsText;
-    [SerializeField] private TextMeshProUGUI healthText; 
     [SerializeField] private Unit unit;
+    [SerializeField] private Image healthbarImage;
     [SerializeField] private HealthSystem healthSystem;
-    [SerializeField] private GameObject fullHPSquare;
-    [SerializeField] private GameObject emptyHPSquare;
-    [SerializeField] private Transform hpContainer;
-    [SerializeField] private GameObject fullAPSquare; 
-    [SerializeField] private GameObject emptyAPSquare;
-    [SerializeField] private Transform apContainer;
-
-    private List<GameObject> hpSquares = new List<GameObject>();
-    private List<GameObject> apSquares = new List<GameObject>(); 
 
     private void Start()
     {
@@ -28,32 +20,16 @@ public class UnitWorldUI : MonoBehaviour
         healthSystem.OnHealed += HealthSystem_OnHealthChanged;
 
         // Initialize UI
-        InitializeHPUI();
-        InitializeAPUI();
         UpdateActionPointText();
-        UpdateHPText();
+        UpdateHealthBar();
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe from events
+        // Unsubscribe from events to prevent memory leaks
         Unit.OnAnyActionPointChange -= Unit_OnAnyActionPointChange;
         healthSystem.OnDamaged -= HealthSystem_OnHealthChanged;
         healthSystem.OnHealed -= HealthSystem_OnHealthChanged;
-    }
-
-
-
-       private void Unit_OnAnyActionPointChange(object sender, EventArgs e)
-    {
-        UpdateActionPointText();
-        UpdateAPUI();
-    }
-
-    private void HealthSystem_OnHealthChanged(object sender, EventArgs e)
-    {
-        UpdateHPUI();
-        UpdateHPText(); 
     }
 
     private void UpdateActionPointText()
@@ -61,67 +37,18 @@ public class UnitWorldUI : MonoBehaviour
         actionPointsText.text = unit.GetActionPoints().ToString() + " AP";
     }
 
-    private void UpdateHPText()
+    private void Unit_OnAnyActionPointChange(object sender, EventArgs e)
     {
-        healthText.text = healthSystem.GetCurrentHealth().ToString() + " HP"; // New function
+        UpdateActionPointText();
     }
 
-
-    private void InitializeHPUI()
+    private void UpdateHealthBar()
     {
-        // Clear existing squares
-        foreach (GameObject square in hpSquares)
-        {
-            Destroy(square);
-        }
-        hpSquares.Clear();
-
-        // Create new squares
-        for (int i = 0; i < healthSystem.GetMaxHealth(); i++)
-        {
-            GameObject hpSquare = Instantiate(fullHPSquare, hpContainer);
-            hpSquares.Add(hpSquare);
-        }
+        healthbarImage.fillAmount = healthSystem.GetHealthNormalized();
     }
 
-    private void UpdateHPUI()
+    private void HealthSystem_OnHealthChanged(object sender, EventArgs e)
     {
-        int currentHP = healthSystem.GetCurrentHealth();
-
-        for (int i = 0; i < hpSquares.Count; i++)
-        {
-            Destroy(hpSquares[i]); // Remove old
-            GameObject newSquare = Instantiate(i < currentHP ? fullHPSquare : emptyHPSquare, hpContainer);
-            hpSquares[i] = newSquare;
-        }
-    }
-
-    private void InitializeAPUI()
-    {
-        // Clear existing AP squares
-        foreach (GameObject square in apSquares)
-        {
-            Destroy(square);
-        }
-        apSquares.Clear();
-
-        // Create new AP squares
-        for (int i = 0; i < unit.GetActionPoints(); i++)
-        {
-            GameObject apSquare = Instantiate(fullAPSquare, apContainer);
-            apSquares.Add(apSquare);
-        }
-    }
-
-    private void UpdateAPUI()
-    {
-        int currentAP = unit.GetActionPoints();
-
-        for (int i = 0; i < apSquares.Count; i++)
-        {
-            Destroy(apSquares[i]); // Remove old
-            GameObject newSquare = Instantiate(i < currentAP ? fullAPSquare : emptyAPSquare, apContainer);
-            apSquares[i] = newSquare;
-        }
+        UpdateHealthBar();
     }
 }
