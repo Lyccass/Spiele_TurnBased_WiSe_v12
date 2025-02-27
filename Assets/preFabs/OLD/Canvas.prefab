@@ -241,14 +241,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132443155824689761}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3402650539669668056}
   - {fileID: 6336674585783440936}
-  m_Father: {fileID: 988940848000071499}
+  m_Father: {fileID: 7309964786660222796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -456,7 +456,6 @@ RectTransform:
   - {fileID: 4964235064880031888}
   - {fileID: 7309964786660222796}
   - {fileID: 4151737501561348389}
-  - {fileID: 7056538255512157046}
   - {fileID: 161332668282826030}
   - {fileID: 6857218952572689548}
   - {fileID: 6784678943996732974}
@@ -1272,6 +1271,7 @@ RectTransform:
   m_Children:
   - {fileID: 2170947104634677343}
   - {fileID: 3696311387799009904}
+  - {fileID: 7056538255512157046}
   m_Father: {fileID: 988940848000071499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1295,6 +1295,18 @@ MonoBehaviour:
     type: 3}
   actionButtonContainerTransform: {fileID: 2170947104634677343}
   actionPointText: {fileID: 2002849749855148559}
+  healthPointText: {fileID: 0}
+  fullAPSquare: {fileID: 0}
+  emptyAPSquare: {fileID: 0}
+  apContainer: {fileID: 0}
+  fullHPSquare: {fileID: 0}
+  emptyHPSquare: {fileID: 0}
+  hpContainer: {fileID: 0}
+  RangerIcon: {fileID: 0}
+  MeleeIcon: {fileID: 0}
+  HealerIcon: {fileID: 0}
+  EyeIcon: {fileID: 0}
+  uiCanvasGroup: {fileID: 0}
 --- !u!1 &2058639328109337321
 GameObject:
   m_ObjectHideFlags: 0

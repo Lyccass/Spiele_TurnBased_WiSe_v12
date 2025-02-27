@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     void CheckSpinConditions()
     {   
         int counter = SpinAction.GetspinCount();
-        if (counter >= 2)
+        if (counter >= 20)
         {
             GameOver("Win");
         }
@@ -145,7 +145,7 @@ void GameOver(string result)
 
 private IEnumerator DelayedGameOver(string result)
 {
-    yield return new WaitForSeconds(1.5f);  
+    yield return new WaitForSeconds(1.3f);  
 
     gameEnded = true;
     unitActionSystemUI.DisableUI(true);
