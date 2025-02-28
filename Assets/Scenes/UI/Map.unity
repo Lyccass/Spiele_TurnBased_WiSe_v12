@@ -5230,6 +5230,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1472372443839662797, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
         type: 3}
+      propertyPath: m_fontColor.a
+      value: 0.5294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472372443839662797, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 2268279603
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472372443839662797, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
       objectReference: {fileID: 0}
@@ -5322,6 +5332,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dungeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544062976661743835, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335936194752506107, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478055319556101144, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478055319556101144, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4478055319556101144, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
         type: 3}
@@ -16380,7 +16410,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -29814,6 +29844,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DungeonButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7259099961600258454, guid: 2a3afb74d0998b64485a3d6b4f9f1eb0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

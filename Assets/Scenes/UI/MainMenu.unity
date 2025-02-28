@@ -135,6 +135,16 @@ PrefabInstance:
       propertyPath: m_text
       value: Load
       objectReference: {fileID: 0}
+    - target: {fileID: 1472372443839662797, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_fontColor.a
+      value: 0.5411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472372443839662797, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 2318611251
+      objectReference: {fileID: 0}
     - target: {fileID: 1502588140659532699, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
         type: 3}
       propertyPath: m_Delegates.Array.size
@@ -255,10 +265,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Load
       objectReference: {fileID: 0}
+    - target: {fileID: 3335936194752506107, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4478055319556101144, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4478055319556101144, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
         type: 3}
@@ -3103,6 +3118,16 @@ PrefabInstance:
       propertyPath: m_text
       value: Options
       objectReference: {fileID: 0}
+    - target: {fileID: 1472372443839662797, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_fontColor.a
+      value: 0.5686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472372443839662797, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 2436051763
+      objectReference: {fileID: 0}
     - target: {fileID: 1502588140659532699, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
         type: 3}
       propertyPath: m_Delegates.Array.size
@@ -3223,10 +3248,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Options
       objectReference: {fileID: 0}
+    - target: {fileID: 3335936194752506107, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478055319556101144, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4478055319556101144, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
         type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4478055319556101144, guid: 00c0cfc57b3ccb0498e95af182e7a8e6,
         type: 3}
