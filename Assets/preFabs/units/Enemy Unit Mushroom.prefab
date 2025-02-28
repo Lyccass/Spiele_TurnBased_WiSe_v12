@@ -16,7 +16,22 @@ PrefabInstance:
     - target: {fileID: -2179808354589893823, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: maxDamage
-      value: 5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2179808354589893823, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: minDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: maxDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: minDamage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
         type: 3}
@@ -31,7 +46,7 @@ PrefabInstance:
     - target: {fileID: 452766894031091776, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2327177680439709333, guid: e6471af187792624b849d97576ac3940,
         type: 3}
@@ -125,6 +140,16 @@ PrefabInstance:
       propertyPath: isEnemy
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5346639918755459091, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: MaxActionPoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598913171188810163, guid: e6471af187792624b849d97576ac3940,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8309453892147863063, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: m_Enabled
@@ -135,7 +160,8 @@ PrefabInstance:
       propertyPath: maxMoveDistance
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1589281641184557645, guid: e6471af187792624b849d97576ac3940, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8798981540576419525, guid: e6471af187792624b849d97576ac3940, type: 3}
     m_AddedGameObjects:

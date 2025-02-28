@@ -121,7 +121,6 @@ public class UnitActionSystemUI : MonoBehaviour
     }
     private void TurnSystem_OnTurnChange(object sender, EventArgs e)
     {   
-        UpdateHealthPoints();
         UpdateActionPoints();
         UpdateUnitIcon();
     }

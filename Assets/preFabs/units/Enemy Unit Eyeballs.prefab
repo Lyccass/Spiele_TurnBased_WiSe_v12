@@ -16,12 +16,12 @@ PrefabInstance:
     - target: {fileID: -2179808354589893823, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: maxDamage
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -2179808354589893823, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: minDamage
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
         type: 3}
@@ -31,12 +31,12 @@ PrefabInstance:
     - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: maxDamage
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: minDamage
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 405153844562583463, guid: e6471af187792624b849d97576ac3940,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 452766894031091776, guid: e6471af187792624b849d97576ac3940,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2327177680439709333, guid: e6471af187792624b849d97576ac3940,
         type: 3}
@@ -190,7 +190,8 @@ PrefabInstance:
       propertyPath: maxMoveDistance
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1589281641184557645, guid: e6471af187792624b849d97576ac3940, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8798981540576419525, guid: e6471af187792624b849d97576ac3940, type: 3}
     m_AddedGameObjects:
