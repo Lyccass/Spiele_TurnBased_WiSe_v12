@@ -34,7 +34,7 @@ RectTransform:
   - {fileID: 1804022237099843278}
   - {fileID: 6285502008603543787}
   - {fileID: 1518117836543806447}
-  m_Father: {fileID: 5351452179645550337}
+  m_Father: {fileID: 2490340162871402246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2312,28 +2312,28 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 988940848000071499, guid: baeab67d8023c714b91b2be7dba31f56,
         type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 5874435627630908283}
-    - targetCorrespondingSourceObject: {fileID: 988940848000071499, guid: baeab67d8023c714b91b2be7dba31f56,
-        type: 3}
       insertIndex: -1
       addedObject: {fileID: 5255449502882150318}
     - targetCorrespondingSourceObject: {fileID: 7309964786660222796, guid: baeab67d8023c714b91b2be7dba31f56,
         type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 4909232540065178321}
     - targetCorrespondingSourceObject: {fileID: 7309964786660222796, guid: baeab67d8023c714b91b2be7dba31f56,
         type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 8896895169980273544}
     - targetCorrespondingSourceObject: {fileID: 7309964786660222796, guid: baeab67d8023c714b91b2be7dba31f56,
         type: 3}
-      insertIndex: -1
+      insertIndex: 4
       addedObject: {fileID: 81799668012589351}
     - targetCorrespondingSourceObject: {fileID: 7309964786660222796, guid: baeab67d8023c714b91b2be7dba31f56,
         type: 3}
-      insertIndex: -1
+      insertIndex: 5
       addedObject: {fileID: 7518102698836745591}
+    - targetCorrespondingSourceObject: {fileID: 7309964786660222796, guid: baeab67d8023c714b91b2be7dba31f56,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5874435627630908283}
     - targetCorrespondingSourceObject: {fileID: 161332668282826030, guid: baeab67d8023c714b91b2be7dba31f56,
         type: 3}
       insertIndex: 0
