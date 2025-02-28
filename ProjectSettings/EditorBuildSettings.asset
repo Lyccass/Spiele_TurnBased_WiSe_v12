@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/20x20 Map Luka.unity
     guid: 632019fd6de99744dbe81fad1739bd1b
   - enabled: 0
-    path: Assets/Scenes/MAPS/Alec/Alec.unity
+    path: Assets/Scenes/MAPS/Alec/Alec Elimination.unity
     guid: b2b581b03ea93c84aae377114d6cc838
   - enabled: 0
     path: Assets/Scenes/25x25 Map Liz.unity

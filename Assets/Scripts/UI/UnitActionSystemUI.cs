@@ -93,9 +93,21 @@ public class UnitActionSystemUI : MonoBehaviour
         CreateUnitActionButtons();
         UpdateSelectedVisual();
         UpdateActionPoints();
+        UpdateHealthPoints();
         InitializeAPUI();
+        UpdateAPUI();
         InitializeHPUI();
+        UpdateHPUI();
         UpdateUnitIcon();
+
+
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+        if (selectedUnit != null)
+        {
+            selectedUnit.healthSystem.OnDamaged += HealthSystem_OnChanged;
+            selectedUnit.healthSystem.OnHealed += HealthSystem_OnChanged;
+
+        }
     }
 
     private void UnitActionSystem_OnSelectedActionChange(object sender, EventArgs e)
@@ -106,6 +118,29 @@ public class UnitActionSystemUI : MonoBehaviour
     private void UnitActionSystem_OnActionStarted(object sender, EventArgs e)
     {
         UpdateActionPoints();
+    }
+    private void TurnSystem_OnTurnChange(object sender, EventArgs e)
+    {   
+        UpdateHealthPoints();
+        UpdateActionPoints();
+        UpdateUnitIcon();
+    }
+
+    private void Unit_OnAnyActionPointChange(object sender, EventArgs e)
+    {
+        UpdateActionPoints();
+    }
+
+    private void HealthSystem_OnChanged(object sender, EventArgs e)
+{
+    UpdateHPUI();
+    UpdateHealthPoints();
+}
+
+    private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
+    {
+        InitializeHPUI();
+        InitializeAPUI();
     }
 
     private void UpdateSelectedVisual()
@@ -125,21 +160,15 @@ public class UnitActionSystemUI : MonoBehaviour
         UpdateAPUI();
     }
 
-    private void TurnSystem_OnTurnChange(object sender, EventArgs e)
+    private void UpdateHealthPoints()
     {
-        UpdateActionPoints();
-        UpdateUnitIcon();
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+        if (selectedUnit == null) return;
+
+        healthPointText.text = "Health Points: " + selectedUnit.healthSystem.GetCurrentHealth();
     }
 
-    private void Unit_OnAnyActionPointChange(object sender, EventArgs e)
-    {
-        UpdateActionPoints();
-    }
-
-    private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
-    {
-        UpdateHPUI(); // Update HP UI when a new unit is spawned
-    }
+    
 
     private void InitializeAPUI()
     {
@@ -206,7 +235,6 @@ public class UnitActionSystemUI : MonoBehaviour
             hpSquares[i] = newSquare;
         }
 
-        healthPointText.text = "Health Points: " + currentHP.ToString();
     }
 
     private void UpdateUnitIcon()
