@@ -19,6 +19,7 @@ public class ActionButtonUI : MonoBehaviour
 
     button.onClick.AddListener(() => {
       UnitActionSystem.Instance.SetSelecterdAction(baseAction);
+      AudioManager.Instance.PlayUI("click");
     });
   }
 

@@ -23,6 +23,7 @@ public class ButtonColorChangeTMP : MonoBehaviour, IPointerEnterHandler, IPointe
         if (buttonText != null)
         {
             buttonText.color = hoverColor;
+            AudioManager.Instance.PlayUI("hover");
         }
     }
 
