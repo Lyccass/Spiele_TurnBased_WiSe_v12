@@ -49,7 +49,9 @@ public class RangedAction : BaseAction
             case State.Aiming:
                 float rotateSpeed = 10f;
                 UnityEngine.Vector3 aimDir = (targetUnit.GetWordPosition() - unit.GetWordPosition()).normalized;
-                transform.forward = UnityEngine.Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * rotateSpeed);
+                UnityEngine.Quaternion targetRotation = UnityEngine.Quaternion.LookRotation(aimDir);
+                transform.rotation = UnityEngine.Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
+
                 break;
 
             case State.Shooting:

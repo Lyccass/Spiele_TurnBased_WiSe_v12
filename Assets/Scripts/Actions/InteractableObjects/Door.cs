@@ -9,6 +9,8 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private bool isOpen;
     [SerializeField] private bool isChest;
     [SerializeField] private Door linkedDoor;
+    [SerializeField] private bool isSwitch;  // Identify if this object is a switch
+
     [SerializeField] private LinkedInteractable linkedInteractable;
      public LinkedInteractable LinkedInteractable
     {
@@ -26,20 +28,29 @@ public class Door : MonoBehaviour, IInteractable
     public bool IsOpen => isOpen;
 
     private void Awake()
-    {
-        animator = GetComponent<Animator>(); // Attempt to assign the Animator
+{
+    animator = GetComponent<Animator>();
 
-        if (animator == null)
-        {
-            Debug.LogWarning($"{gameObject.name} does not have an Animator component.");
-        }
+    if (animator == null)
+    {
+        Debug.LogWarning($"{gameObject.name} does not have an Animator component.");
     }
 
-    private void Start()
+    // 🔍 Check if the switch is being treated as a door
+    if (isChest)
+    {
+        Debug.LogWarning($"{gameObject.name} is a chest and should not act as a door!");
+    }
+    else
+    {
+        Debug.Log($"Door registered: {gameObject.name} (isChest: {isChest}, isOpen: {isOpen})");
+    }
+}
+
+  private void Start()
 {
     gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
 
-    // Register door as interactable only if no linked interactable
     if (linkedInteractable == null)
     {
         LevelGrid.Instance.SetInteractableAtGridPosition(gridPosition, this);
@@ -53,12 +64,10 @@ public class Door : MonoBehaviour, IInteractable
     if (isOpen)
     {
         OpenDoor();
-      
     }
     else
     {
         CloseDoor();
-        
     }
 }
 
@@ -129,7 +138,7 @@ public void Interact(Action onInteractComplete)
         Debug.Log($"Chest opened! Remaining chests: {GameManager.Instance.chest}");
     }
 
-   public void OpenDoor()
+public void OpenDoor()
 {
     if (isOpen) return;
 
@@ -141,10 +150,18 @@ public void Interact(Action onInteractComplete)
         animator.SetBool("IsOpen", isOpen);
     }
 
-    Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, true);
+    // 🔥 Only modify pathfinding if this is a DOOR, not a SWITCH
+    if (!isSwitch)
+    {
+        GridPosition doorGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        Debug.Log($"Setting walkable: {doorGridPosition} for {gameObject.name} (Door)");
+        Pathfinding.Instance.SetIsWalkableGridPosition(doorGridPosition, true);
+    }
+
     OnDoorOpened?.Invoke(this, EventArgs.Empty);
     OnAnyDoorOpened?.Invoke(this, EventArgs.Empty);
 }
+
 
 public void CloseDoor()
 {
@@ -158,6 +175,15 @@ public void CloseDoor()
         animator.SetBool("IsOpen", isOpen);
     }
 
-    Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, false);
+    // 🔥 Only modify pathfinding if this is a DOOR, not a SWITCH
+    if (!isSwitch)
+    {
+        GridPosition doorGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        Debug.Log($"Setting NOT walkable: {doorGridPosition} for {gameObject.name} (Door)");
+        Pathfinding.Instance.SetIsWalkableGridPosition(doorGridPosition, false);
+    }
 }
+
+
+
 }
