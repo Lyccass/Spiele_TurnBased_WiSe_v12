@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9e9b1a78c26aa489da080755404f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 21
 --- !u!114 &2790831320528014335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 10
-  maxMoveDistance: 2
+  maxMoveDistance: 4
 --- !u!114 &8503737846362529401
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,20 +14,21 @@ public class HidePanelAfterTime : MonoBehaviour
         {
             uiPanel.SetActive(false);
         }
-        else
+       /* else
         {
             // Set the panel to active and start the timer to deactivate it
             uiPanel.SetActive(true);
             Invoke(nameof(HidePanel), hideDelay);
         }
+        */
     }
 
-    private void HidePanel()
+    /* private void HidePanel()
     {
         if (uiPanel != null)
         {
             uiPanel.SetActive(false);  // Deactivate the panel
             panelIsDeactivated = true; // Set the static variable to indicate panel is deactivated
         }
-    }
+    */
 }
