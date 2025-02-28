@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MAPS/Jacky/JackyEli.unity
     guid: 93a085eed3d7fa646bbcfacb60a73585
   - enabled: 1
-    path: Assets/Scenes/MAPS/Farah/Forest_Assassination.unity
+    path: Assets/Scenes/MAPS/Farah/Forest_Elimination.unity
     guid: fb9f2d8d54085cf44844570a5842d4e5
   - enabled: 1
     path: Assets/Scenes/MAPS/Farah/Forest_Hunt.unity
