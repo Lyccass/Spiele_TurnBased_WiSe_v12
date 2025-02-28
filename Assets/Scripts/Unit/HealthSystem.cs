@@ -18,6 +18,7 @@ public class HealthSystem : MonoBehaviour
         }
    public void Damage(int damageAmount)
    {
+    AudioManager.Instance.PlaySFX("Impact");
     health -= damageAmount;
     if( health < 0)
     {
@@ -46,6 +47,7 @@ public class HealthSystem : MonoBehaviour
    private void Die()
    {
     OnDead?.Invoke(this, EventArgs.Empty);
+    AudioManager.Instance.PlaySFX("Death");
    }
 
      public int GetCurrentHealth()

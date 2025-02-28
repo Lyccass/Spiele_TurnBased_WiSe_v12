@@ -12,6 +12,12 @@ public class MoveAction : BaseAction
     private bool isMoving = false; // To keep track of movement statd
     [SerializeField]float rotateSpeed = 10f;
     [SerializeField] private int maxMoveDistance = 1;
+
+      protected override void Awake()
+{
+    base.Awake(); // Calls the base class Awake() method to ensure proper initialization
+}
+
   
     private void Update() {
 

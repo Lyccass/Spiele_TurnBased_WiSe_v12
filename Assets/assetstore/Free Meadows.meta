@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/New Terrain 2.asset.meta
+guid: c3bcb813a63852348b85d9bd7c87c77f
+NativeFormatImporter:
+========
 guid: 757d26161b88a874d925e8fb73f9fe9f
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> Alec:Assets/assetstore/Free Meadows.meta
   externalObjects: {}
+  mainObjectFileID: 15600000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
