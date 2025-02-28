@@ -18,7 +18,14 @@ public class UnitActionSystemUI : MonoBehaviour
     [SerializeField] private GameObject fullHPSquare; // Added HP square visual
     [SerializeField] private GameObject emptyHPSquare;
     [SerializeField] private Transform hpContainer; // Parent for HP squares
+    [SerializeField] private GameObject RangerIcon;
+    [SerializeField] private GameObject MeleeIcon;
+    [SerializeField] private GameObject HealerIcon;
+    [SerializeField] private GameObject EyeIcon;
 
+    [SerializeField] private CanvasGroup uiCanvasGroup;
+
+    
     private List<ActionButtonUI> actionButtonUIList;
     private List<GameObject> apSquares = new List<GameObject>(); // AP squares list
     private List<GameObject> hpSquares = new List<GameObject>(); // HP squares list
@@ -86,8 +93,21 @@ public class UnitActionSystemUI : MonoBehaviour
         CreateUnitActionButtons();
         UpdateSelectedVisual();
         UpdateActionPoints();
+        UpdateHealthPoints();
         InitializeAPUI();
+        UpdateAPUI();
         InitializeHPUI();
+        UpdateHPUI();
+        UpdateUnitIcon();
+
+
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+        if (selectedUnit != null)
+        {
+            selectedUnit.healthSystem.OnDamaged += HealthSystem_OnChanged;
+            selectedUnit.healthSystem.OnHealed += HealthSystem_OnChanged;
+
+        }
     }
 
     private void UnitActionSystem_OnSelectedActionChange(object sender, EventArgs e)
@@ -98,6 +118,29 @@ public class UnitActionSystemUI : MonoBehaviour
     private void UnitActionSystem_OnActionStarted(object sender, EventArgs e)
     {
         UpdateActionPoints();
+    }
+    private void TurnSystem_OnTurnChange(object sender, EventArgs e)
+    {   
+        UpdateHealthPoints();
+        UpdateActionPoints();
+        UpdateUnitIcon();
+    }
+
+    private void Unit_OnAnyActionPointChange(object sender, EventArgs e)
+    {
+        UpdateActionPoints();
+    }
+
+    private void HealthSystem_OnChanged(object sender, EventArgs e)
+{
+    UpdateHPUI();
+    UpdateHealthPoints();
+}
+
+    private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
+    {
+        InitializeHPUI();
+        InitializeAPUI();
     }
 
     private void UpdateSelectedVisual()
@@ -117,20 +160,15 @@ public class UnitActionSystemUI : MonoBehaviour
         UpdateAPUI();
     }
 
-    private void TurnSystem_OnTurnChange(object sender, EventArgs e)
+    private void UpdateHealthPoints()
     {
-        UpdateActionPoints();
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+        if (selectedUnit == null) return;
+
+        healthPointText.text = "Health Points: " + selectedUnit.healthSystem.GetCurrentHealth();
     }
 
-    private void Unit_OnAnyActionPointChange(object sender, EventArgs e)
-    {
-        UpdateActionPoints();
-    }
-
-    private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
-    {
-        UpdateHPUI(); // Update HP UI when a new unit is spawned
-    }
+    
 
     private void InitializeAPUI()
     {
@@ -197,6 +235,59 @@ public class UnitActionSystemUI : MonoBehaviour
             hpSquares[i] = newSquare;
         }
 
-        healthPointText.text = "Health Points: " + currentHP.ToString();
     }
+
+    private void UpdateUnitIcon()
+    {   
+        MeleeIcon.SetActive(false);
+        HealerIcon.SetActive(false);
+        RangerIcon.SetActive(false);
+        EyeIcon.SetActive(false);
+       
+        
+        // Get the selected unit
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+        if (selectedUnit == null) return;
+
+        // Compare the unit's GameObject name
+        string unitName = selectedUnit.gameObject.name;
+
+        if (!TurnSystem.Instance.IsPlayerTurn())
+        {
+            EyeIcon.SetActive(true);
+        }
+
+        else if (unitName.Contains("Healer"))
+        {
+            HealerIcon.SetActive(true);
+        }
+        else if (unitName.Contains("Melee"))
+        {
+            MeleeIcon.SetActive(true);
+        }
+        else if (unitName.Contains("Ranger"))
+        {
+            RangerIcon.SetActive(true);
+        }
+        
+    }
+
+    public void DisableUI(bool disable)
+    {
+        if (disable)
+        {
+            // Set the CanvasGroup alpha to 0 and disable interaction
+            uiCanvasGroup.alpha = 0;
+            uiCanvasGroup.interactable = false;
+            uiCanvasGroup.blocksRaycasts = false;
+        }
+        else
+        {
+            // Set the CanvasGroup alpha to 1 and re-enable interaction
+            uiCanvasGroup.alpha = 1;
+            uiCanvasGroup.interactable = true;
+            uiCanvasGroup.blocksRaycasts = true;
+        }
+    }
+
 }

@@ -211,6 +211,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preUnlockedActions:
   - {fileID: 8951325758057648784}
+  - {fileID: 7598913171188810163}
+  - {fileID: -2179808354589893823}
+  - {fileID: 8503737846362529401}
+  - {fileID: 405153844562583463}
 --- !u!1 &1010977058299753444
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class TurnSystemUI : MonoBehaviour
   [SerializeField]  private Button endTurnButton;
   [SerializeField] private TextMeshProUGUI activeTurn;
   [SerializeField] private GameObject enemyTurnVisual;
+ 
 
 private void Start() 
 { 
@@ -34,7 +35,9 @@ private void TurnSystem_OnTurnChange(object sender, EventArgs e)
 private void UpdateTurnText()
 
 {
-  activeTurn.text = "Turn: " + TurnSystem.Instance.GetTurnNumber();
+  int turnNumber = TurnSystem.Instance.GetTurnNumber();
+  int playerTurn = (turnNumber + 1) / 2; // Divide by 2 and add 1 to get the desired result
+  activeTurn.text = "Turn: " + playerTurn;
 }
 
 public void UpdateEnemyTurnVisual()

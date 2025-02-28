@@ -7,6 +7,7 @@ public class SpinAction : BaseAction
 {
 
     private float totalSpinAmount;
+    private static int spinCount = 0;
 
 
     private void Update() 
@@ -25,13 +26,23 @@ public class SpinAction : BaseAction
            ActionComplete();
          }
         
-        
+    }
+
+    public static int GetspinCount()
+    {
+        return spinCount; 
+    }
+    public static void ResetSpinCount()
+    {
+        spinCount = 0;
     }
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
        
         totalSpinAmount = 0f;
         ActionStart(onActionComplete);
+        spinCount ++;
+        Debug.Log ("spin!");
     }
 
       public override string GetActionName()
