@@ -26,6 +26,7 @@ public class Door : MonoBehaviour, IInteractable
     private bool isActive;
     private float timer;
     public bool IsOpen => isOpen;
+   
 
     private void Awake()
 {
@@ -131,7 +132,7 @@ public void Interact(Action onInteractComplete)
 
         if (animator != null)
         {
-            animator.SetTrigger("Open");
+            animator.SetBool("open", true);
         }
 
         GameManager.Instance.chest--;
