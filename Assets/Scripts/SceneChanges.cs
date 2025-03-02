@@ -34,11 +34,7 @@ public class SceneChanges : MonoBehaviour
         LoadScene("Hub");
     }
 
-      public void LoadLevel(string levelName)
-    {   
-        LoadScene(levelName);
-    }
-
+  
       //reload current scene
     public void ReloadCurrentScene()
     {
