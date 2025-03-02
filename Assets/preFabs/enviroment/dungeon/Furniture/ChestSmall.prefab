@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1002039313208531687}
   - component: {fileID: 3882763006039676289}
-  - component: {fileID: 6935194105941284680}
+  - component: {fileID: 3036158000475836260}
   m_Layer: 0
   m_Name: ChestSmall
   m_TagString: Chest
@@ -50,9 +50,8 @@ MonoBehaviour:
   isOpen: 0
   isChest: 1
   linkedDoor: {fileID: 0}
-  isSwitch: 0
   linkedInteractable: {fileID: 0}
---- !u!95 &6935194105941284680
+--- !u!95 &3036158000475836260
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
