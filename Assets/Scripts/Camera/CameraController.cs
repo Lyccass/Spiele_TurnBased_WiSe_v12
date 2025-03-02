@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100f;
     [SerializeField] private float zoomIncreaseAmount = 1f;
     [SerializeField] private const float MIN_FOLLOW_Y_OFFSET = 2f;
-    [SerializeField] private const float MAX_FOLLOW_Y_OFFSET = 25f;
+    [SerializeField] private const float MAX_FOLLOW_Y_OFFSET = 35f;
     [SerializeField] private float zoomSpeed = 5f;
     private Vector3 targetFollowOffset;
     private CinemachineTransposer cinemachineTransposer;

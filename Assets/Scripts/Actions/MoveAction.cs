@@ -35,7 +35,7 @@ public class MoveAction : BaseAction
         {
             // Move toward target position
             
-            float moveSpeed = 4f;
+            float moveSpeed = 6f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
             //smoothing the rotation
         
