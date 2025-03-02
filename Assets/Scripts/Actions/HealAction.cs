@@ -85,7 +85,7 @@ private void NextState()
 private void Heal()
 {
     targetUnit.GetComponent<HealthSystem>().Heal(UnityEngine.Random.Range(minHealAmount, maxHealAmount));
-    Debug.Log($"{unit.name} healed {targetUnit.name}.");
+  //  Debug.Log($"{unit.name} healed {targetUnit.name}.");
 }
     public override string GetActionName()
     {

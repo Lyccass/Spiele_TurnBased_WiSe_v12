@@ -81,12 +81,12 @@ public class AudioManager : MonoBehaviour
         {
             currentPlaylist = mapPlaylists[sceneName];
             currentMusicIndex = 0;
-            Debug.Log($"🎵 Playlist set for scene: {sceneName}. Now playing: {currentPlaylist[currentMusicIndex]}");
+            Debug.Log($" Playlist set for scene: {sceneName}. Now playing: {currentPlaylist[currentMusicIndex]}");
             PlayMusic(currentPlaylist[currentMusicIndex]); // Play first song
         }
         else
         {
-            Debug.Log($"❌ No specific playlist for scene: {sceneName}. Stopping music.");
+            Debug.Log($" No specific playlist for scene: {sceneName}. Stopping music.");
             StopMusic();
         }
     }
@@ -96,7 +96,7 @@ public class AudioManager : MonoBehaviour
         if (currentPlaylist.Length == 0) return;
 
         currentMusicIndex = (currentMusicIndex + 1) % currentPlaylist.Length;
-        Debug.Log($"🎵 Switching to next track: {currentPlaylist[currentMusicIndex]}");
+        Debug.Log($" Switching to next track: {currentPlaylist[currentMusicIndex]}");
         PlayMusic(currentPlaylist[currentMusicIndex]);
     }
 
@@ -107,19 +107,19 @@ public class AudioManager : MonoBehaviour
 
         if (s == null)
         {
-            Debug.Log($"❌ Sound Not Found: {name}");
+            Debug.Log($" Sound Not Found: {name}");
         }
         else
         {
             if (musicSource.clip == s.clip && musicSource.isPlaying)
             {
-                Debug.Log($"⚠️ Music '{name}' is already playing.");
+                Debug.Log($" Music '{name}' is already playing.");
                 return; // Prevent restarting the same track
             }
 
             musicSource.clip = s.clip;
             musicSource.Play();
-            Debug.Log($"🎵 Now Playing: {name}");
+            Debug.Log($" Now Playing: {name}");
         }
     }
 
@@ -129,7 +129,7 @@ public class AudioManager : MonoBehaviour
         {
             musicStopped = true;
             musicSource.Stop();
-            Debug.Log("🛑 Music Stopped.");
+            Debug.Log(" Music Stopped.");
         }
     }
 
@@ -138,7 +138,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sfxSounds, x => x.name == name);
         if (s == null)
         {
-            Debug.Log($"❌ SFX Sound Not Found: {name}");
+            Debug.Log($" SFX Sound Not Found: {name}");
         }
         else
         {
@@ -146,7 +146,7 @@ public class AudioManager : MonoBehaviour
             sfxSource.pitch = GetRandomPitch(lastSfxPitch);
             lastSfxPitch = sfxSource.pitch;
             sfxSource.PlayOneShot(s.clip);
-            Debug.Log($"🔊 Playing SFX: {name} at pitch {sfxSource.pitch}");
+            Debug.Log($" Playing SFX: {name} at pitch {sfxSource.pitch}");
         }
     }
 
@@ -155,7 +155,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(uiSounds, x => x.name == name);
         if (s == null)
         {
-            Debug.Log($"❌ UI Sound Not Found: {name}");
+            Debug.Log($" UI Sound Not Found: {name}");
         }
         else
         {
@@ -163,7 +163,7 @@ public class AudioManager : MonoBehaviour
             uiSource.pitch = GetRandomPitch(lastUIPitch);
             lastUIPitch = uiSource.pitch;
             uiSource.PlayOneShot(s.clip);
-            Debug.Log($"🖱️ Playing UI Sound: {name} at pitch {uiSource.pitch}");
+            Debug.Log($" Playing UI Sound: {name} at pitch {uiSource.pitch}");
         }
     }
 
@@ -183,26 +183,26 @@ public class AudioManager : MonoBehaviour
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
-        Debug.Log($"🎵 Music Muted: {musicSource.mute}");
+        Debug.Log($" Music Muted: {musicSource.mute}");
     }
 
     public void ToggleSFX()
     {
         sfxSource.mute = !sfxSource.mute;
         uiSource.mute = !uiSource.mute;
-        Debug.Log($"🔊 SFX Muted: {sfxSource.mute}");
+        Debug.Log($" SFX Muted: {sfxSource.mute}");
     }
 
     public void MusicVolume(float volume)
     {
         musicSource.volume = volume;
-        Debug.Log($"🎚️ Music Volume Set To: {volume}");
+        Debug.Log($" Music Volume Set To: {volume}");
     }
 
     public void SFXVolume(float volume)
     {
         sfxSource.volume = volume;
         uiSource.volume = volume;
-        Debug.Log($"🎚️ SFX Volume Set To: {volume}");
+        Debug.Log($" SFX Volume Set To: {volume}");
     }
 }

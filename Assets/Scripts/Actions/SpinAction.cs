@@ -42,7 +42,7 @@ public class SpinAction : BaseAction
         totalSpinAmount = 0f;
         ActionStart(onActionComplete);
         spinCount ++;
-        Debug.Log ("spin!");
+     //   Debug.Log ("spin!");
     }
 
       public override string GetActionName()

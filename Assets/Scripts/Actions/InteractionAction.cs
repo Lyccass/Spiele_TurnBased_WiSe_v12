@@ -76,7 +76,7 @@ public class InteractionAction : BaseAction
     {
         if (!IsUnlocked()) return; // Prevents taking action if still locked
 
-        Debug.Log("Interacted");
+     //   Debug.Log("Interacted");
         IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(gridPosition);
         interactable.Interact(OnInteractComplete);
         ActionStart(onActionComplete);

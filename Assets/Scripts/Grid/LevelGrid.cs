@@ -65,7 +65,7 @@ public class LevelGrid : MonoBehaviour
 {
     if (unit.IsEnemy()) // Ensure this works only with friendly units
     {
-        Debug.Log("Unit is not friendly, ignoring movement.");
+      //  Debug.Log("Unit is not friendly, ignoring movement.");
         RemoveUnitAtGridPosition(fromGridPosition, unit);
         AddUnitAtGridPosition(toGridPosition, unit);
         return;

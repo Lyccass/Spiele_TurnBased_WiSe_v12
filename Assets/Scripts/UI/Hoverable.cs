@@ -28,7 +28,7 @@ public class Hoverable : MonoBehaviour
         // Wait for 1 second before activating tooltip and sound
         yield return new WaitForSeconds(0.5f);
           Tooltip.Instance.StartHover(tooltipText);
-        AudioManager.Instance.PlayUI("Hover_Object");
+        AudioManager.Instance.PlayUI("hover2");
         
     }
 }

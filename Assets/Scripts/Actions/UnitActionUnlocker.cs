@@ -27,7 +27,7 @@ public class UnitActionUnlocker : MonoBehaviour
         // Force UI to update if any action was unlocked at the start
         if (anyActionUnlocked)
         {
-            Debug.Log("Pre-unlocked actions applied. Refreshing UI.");
+        //    Debug.Log("Pre-unlocked actions applied. Refreshing UI.");
             OnUnlockNewAction?.Invoke();
         }
     }
@@ -39,7 +39,7 @@ public class UnitActionUnlocker : MonoBehaviour
         actionToUnlock.UnlockAction();
         unlockedActions.Add(actionToUnlock);
 
-        Debug.Log($"Unlocked action: {actionToUnlock.GetActionName()} for {gameObject.name}");
+      //  Debug.Log($"Unlocked action: {actionToUnlock.GetActionName()} for {gameObject.name}");
 
         OnUnlockNewAction?.Invoke(); // Notify UI to refresh buttons
     }

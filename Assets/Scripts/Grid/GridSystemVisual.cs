@@ -210,7 +210,7 @@ private void UpdateGridVisual()
                 return gridVisualTypeMaterial.material;
             }
         }
-        Debug.LogError("ColorMaterial not found " +  gridVisualType);
+      //  Debug.LogError("ColorMaterial not found " +  gridVisualType);
         return null;
    }
 
