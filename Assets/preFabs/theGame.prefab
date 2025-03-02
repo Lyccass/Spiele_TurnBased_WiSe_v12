@@ -418,6 +418,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6886841010629333211}
+    - target: {fileID: 2442936092452982717, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3091847872073525802, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -612,6 +617,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8945119125467507118}
+    - target: {fileID: 6644722794719420997, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_text
+      value: 'Action Points:'
+      objectReference: {fileID: 0}
     - target: {fileID: 7335180623130652164, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -632,6 +642,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6886841010629333211}
+    - target: {fileID: 8688700292174853672, guid: e695aad6a0def294bb46fb85d0f91068,
+        type: 3}
+      propertyPath: m_text
+      value: 'Health Points:'
+      objectReference: {fileID: 0}
     - target: {fileID: 8808309267505562471, guid: e695aad6a0def294bb46fb85d0f91068,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -663,7 +678,8 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 683631219348586991, guid: e695aad6a0def294bb46fb85d0f91068, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e695aad6a0def294bb46fb85d0f91068, type: 3}

@@ -108,6 +108,7 @@ public class UnitActionSystemUI : MonoBehaviour
             selectedUnit.healthSystem.OnHealed += HealthSystem_OnChanged;
 
         }
+       
     }
 
     private void UnitActionSystem_OnSelectedActionChange(object sender, EventArgs e)
@@ -122,6 +123,8 @@ public class UnitActionSystemUI : MonoBehaviour
     private void TurnSystem_OnTurnChange(object sender, EventArgs e)
     {   
         UpdateActionPoints();
+        UpdateHealthPoints();
+        UpdateHPUI();
         UpdateUnitIcon();
     }
 
@@ -131,15 +134,17 @@ public class UnitActionSystemUI : MonoBehaviour
     }
 
     private void HealthSystem_OnChanged(object sender, EventArgs e)
-{
+    {
     UpdateHPUI();
     UpdateHealthPoints();
-}
+    }
 
     private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
     {
         InitializeHPUI();
         InitializeAPUI();
+        UpdateActionPoints();
+        UpdateHealthPoints();
     }
 
     private void UpdateSelectedVisual()
