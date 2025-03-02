@@ -15,6 +15,10 @@ public class AudioManager : MonoBehaviour
     private int currentMusicIndex = 0;
     private bool musicStopped = false;
 
+    // Store the last pitch for SFX and UI to avoid repeating the same value consecutively
+    private float lastSfxPitch = 1f;
+    private float lastUIPitch = 1f;
+
     // Define different playlists for different maps
     private Dictionary<string, string[]> mapPlaylists = new Dictionary<string, string[]>()
     {
@@ -138,8 +142,11 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
+            // Get a new random pitch that's not the same as the last one
+            sfxSource.pitch = GetRandomPitch(lastSfxPitch);
+            lastSfxPitch = sfxSource.pitch;
             sfxSource.PlayOneShot(s.clip);
-            Debug.Log($"🔊 Playing SFX: {name}");
+            Debug.Log($"🔊 Playing SFX: {name} at pitch {sfxSource.pitch}");
         }
     }
 
@@ -152,9 +159,25 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
+            // Get a new random pitch that's not the same as the last one
+            uiSource.pitch = GetRandomPitch(lastUIPitch);
+            lastUIPitch = uiSource.pitch;
             uiSource.PlayOneShot(s.clip);
-            Debug.Log($"🖱️ Playing UI Sound: {name}");
+            Debug.Log($"🖱️ Playing UI Sound: {name} at pitch {uiSource.pitch}");
         }
+    }
+
+    // Helper method to get a random pitch in the range [0.95, 1.05] that differs from the last pitch used.
+    private float GetRandomPitch(float lastPitch)
+    {
+        float newPitch;
+        // Use a loop to ensure we don't get the same pitch twice in a row
+        do
+        {
+            newPitch = UnityEngine.Random.Range(0.95f, 1.05f); // [Unity Random.Range Documentation](https://docs.unity3d.com/ScriptReference/Random.Range.html) :contentReference[oaicite:0]{index=0}
+        }
+        while (Mathf.Approximately(newPitch, lastPitch));
+        return newPitch;
     }
 
     public void ToggleMusic()

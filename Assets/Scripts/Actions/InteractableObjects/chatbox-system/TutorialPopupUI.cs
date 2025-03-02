@@ -55,6 +55,7 @@ public class TutorialPopupUI : MonoBehaviour
     {
         if (currentMessageIndex < currentMessages.Count)
         {
+            AudioManager.Instance.PlayUI("Text");
             popupText.text = currentMessages[currentMessageIndex];
             currentMessageIndex++;
         }
