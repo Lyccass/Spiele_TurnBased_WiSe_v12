@@ -18,12 +18,15 @@ public class AudioManager : MonoBehaviour
     // Define different playlists for different maps
     private Dictionary<string, string[]> mapPlaylists = new Dictionary<string, string[]>()
     {
-        { "Tutorial", new string[] { "tutorial", "hunt" } },
-        { "Alec", new string[] { "swamp", "boss" } },
+        { "Tutorial", new string[] { "tutorial", "eli" } },
+        { "Alec Assasination", new string[] { "swamp", "boss" } },
+        { "Alec Elimination", new string[] { "swamp", "eli" } },
         { "Forest_Assassination", new string[] { "mushroom", "boss" } },
         { "Forest_Hunt", new string[] { "mushroom", "hunt" } },
         { "JackyEli", new string[] { "ruins", "eli" } },
         { "JackyHunt", new string[] { "ruins", "hunt" } },
+        { "LizMap_KillAll", new string[] { "village", "eli" } },
+        { "LizMap_FindObject", new string[] { "village", "hunt" } },
         { "Hub", new string[] { "hub" } },
         { "MainMenu - UI", new string[] { "main1" } },
         { "Map - UI", new string[] { "main2" } },
