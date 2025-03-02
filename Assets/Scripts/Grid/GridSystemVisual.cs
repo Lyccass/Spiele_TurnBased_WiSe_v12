@@ -36,30 +36,38 @@ public class GridSystemVisual : MonoBehaviour
      Instance = this;
    }
 
+private void Start() 
+{
+    gridSystemVisualSingleArray = new GridSystemVisualSingle[
+        LevelGrid.Instance.GetWidth(),
+        LevelGrid.Instance.GetHeight()
+    ];
 
-    private void Start() 
+    for (int x = 0; x < LevelGrid.Instance.GetWidth(); x++)
     {
-        gridSystemVisualSingleArray = new GridSystemVisualSingle[
-            LevelGrid.Instance.GetWidth(),
-             LevelGrid.Instance.GetHeight()
-            ] ;
-
-        for(int x = 0 ; x < LevelGrid.Instance.GetWidth(); x++ )
+        for (int z = 0; z < LevelGrid.Instance.GetHeight(); z++)
         {
-             for(int z = 0 ; z < LevelGrid.Instance.GetHeight(); z++ )
-            {
-                GridPosition gridPosition = new GridPosition(x,z);
-                Transform gridSystemVisualSingleTransform =
-                 Instantiate(gridSystemVisualSinglePrefab, LevelGrid.Instance.GetWorldPositionn(gridPosition), Quaternion.identity);
+            GridPosition gridPosition = new GridPosition(x, z);
+            Transform gridSystemVisualSingleTransform =
+                Instantiate(gridSystemVisualSinglePrefab, LevelGrid.Instance.GetWorldPositionn(gridPosition), Quaternion.identity);
 
-                  gridSystemVisualSingleArray[x,z] = gridSystemVisualSingleTransform.GetComponent<GridSystemVisualSingle>();
-            }
+            gridSystemVisualSingleArray[x, z] = gridSystemVisualSingleTransform.GetComponent<GridSystemVisualSingle>();
         }
-
-        UnitActionSystem.Instance.OnSelectedActionChange += UnitActionSystem_OnSelectedActionChange;
-        LevelGrid.Instance.OnAnyUnitMovedGridPosition += LevelGrid_OnAnyUnitMovedPosition;
-        UpdateGridVisual();
     }
+
+    // Subscribe to both events.
+    UnitActionSystem.Instance.OnSelectedActionChange += UnitActionSystem_OnSelectedActionChange;
+    UnitActionSystem.Instance.OnSelectedUnitChange += UnitActionSystem_OnSelectedUnitChange;
+    LevelGrid.Instance.OnAnyUnitMovedGridPosition += LevelGrid_OnAnyUnitMovedPosition;
+
+    UpdateGridVisual();
+}
+
+private void UnitActionSystem_OnSelectedUnitChange(object sender, EventArgs e)
+{
+    UpdateGridVisual();
+}
+
 
     public void HideAllGridPositions()
     {
@@ -133,48 +141,55 @@ public class GridSystemVisual : MonoBehaviour
         }
 
     }
+private void UpdateGridVisual()
+{
+    HideAllGridPositions();
 
-    private void UpdateGridVisual()
+    Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+    BaseAction selectedAction = UnitActionSystem.Instance.GetSelectedAction();
+
+    // If no unit is selected, just hide grid visuals and exit.
+    if (selectedUnit == null)
     {
-        HideAllGridPositions();
-        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
-        
-        BaseAction selectedAction = UnitActionSystem.Instance.GetSelectedAction();
-        GridVisualType gridVisualType;
-        switch (selectedAction)
-        {
-                default:
-                case MoveAction moveAction:
-                    gridVisualType = GridVisualType.White;
-                    break;
-                case SpinAction spinAction:
-                    gridVisualType = GridVisualType.Yellow;
-                    break;
-                case RangedAction rangedAction:
-                    gridVisualType = GridVisualType.Red;
-
-                    ShowGridPositionRange(selectedUnit.GetGridPosition(), rangedAction.GetMaxRangeDistance(), GridVisualType.LightRed);
-                    break;
-
-                case AoeAction AoeAction:
-                    gridVisualType = GridVisualType.Yellow;
-                    break;
-
-                case MeeleAction meeleAction:
-                    gridVisualType = GridVisualType.Red;
-                    break;
-
-                case InteractionAction interactionAction:
-                    gridVisualType = GridVisualType.White;
-                    break;
-
-                
-
-        }
-        ShowGridPositionList( 
-                selectedAction.GetValidGridPositionList(), gridVisualType);
-
+        return;
     }
+    
+    // If for some reason the unit doesn't have a valid action, also exit.
+    if (selectedAction == null)
+    {
+        return;
+    }
+
+    GridVisualType gridVisualType;
+
+    // Use pattern matching to determine which grid visual to show.
+    switch (selectedAction)
+    {
+        default:
+        case MoveAction moveAction:
+            gridVisualType = GridVisualType.White;
+            break;
+        case SpinAction spinAction:
+            gridVisualType = GridVisualType.Yellow;
+            break;
+        case RangedAction rangedAction:
+            gridVisualType = GridVisualType.Red;
+            // Show extra range for ranged action.
+            ShowGridPositionRange(selectedUnit.GetGridPosition(), rangedAction.GetMaxRangeDistance(), GridVisualType.LightRed);
+            break;
+        case AoeAction aoeAction:
+            gridVisualType = GridVisualType.Yellow;
+            break;
+        case MeeleAction meeleAction:
+            gridVisualType = GridVisualType.Red;
+            break;
+        case InteractionAction interactionAction:
+            gridVisualType = GridVisualType.White;
+            break;
+    }
+    ShowGridPositionList(selectedAction.GetValidGridPositionList(), gridVisualType);
+}
+
 
     private void UnitActionSystem_OnSelectedActionChange(object sender , EventArgs e)
     {
