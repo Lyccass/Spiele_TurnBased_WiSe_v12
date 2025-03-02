@@ -51,19 +51,20 @@ public class TutorialPopupUI : MonoBehaviour
         ShowNextMessage();
     }
 
-    private void ShowNextMessage()
+private void ShowNextMessage()
+{
+    if (currentMessageIndex < currentMessages.Count)
     {
-        if (currentMessageIndex < currentMessages.Count)
-        {
-            AudioManager.Instance.PlayUI("text");
-            popupText.text = currentMessages[currentMessageIndex];
-            currentMessageIndex++;
-        }
-        else
-        {
-            HidePopup();
-        }
+        Debug.Log("[TutorialPopupUI] About to play 'text' UI sound");
+        AudioManager.Instance.PlayUI("text");
+        popupText.text = currentMessages[currentMessageIndex];
+        currentMessageIndex++;
     }
+    else
+    {
+        HidePopup();
+    }
+}
 
     public void HidePopup()
     {
