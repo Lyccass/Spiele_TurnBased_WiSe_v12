@@ -89268,6 +89268,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6880971425649179269, guid: 7863d7d44270b594daeacf9d364ba547,
+        type: 3}
+      propertyPath: m_FollowOffset.y
+      value: 24.99998
+      objectReference: {fileID: 0}
     - target: {fileID: 7516150588027055712, guid: 7863d7d44270b594daeacf9d364ba547,
         type: 3}
       propertyPath: m_Name
