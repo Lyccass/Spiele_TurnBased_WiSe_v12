@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MAPS/Liz/LizMap_FIndObject.unity
     guid: 58e94de8e8d722d468de900f1b271b17
+  - enabled: 1
+    path: Assets/Scenes/MAPS/Liz/LizMap_Assasination.unity
+    guid: 9191d0eef5077ef429cc3b12f87ee20e
   m_configObjects: {}

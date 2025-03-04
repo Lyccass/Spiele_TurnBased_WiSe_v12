@@ -18,7 +18,7 @@ PlayerSettings:
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
-  m_ShowUnitySplashLogo: 0
+  m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
   m_SplashScreenLogoStyle: 1
@@ -40,7 +40,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: d0d97f71f64c2414bb01445edabcc7c2, type: 3}
+  - logo: {fileID: 21300000, guid: 7b9282692461cbd44b74d393430c984c, type: 3}
     duration: 2.95
   m_VirtualRealitySplashScreen: {fileID: 2800000, guid: ffeb718298423df42945c20e4882fca4,
     type: 3}
@@ -293,27 +293,27 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: e9e709cc0e874f9409ec3863a53b8e6a, type: 3}
+      m_Icon: {fileID: 2800000, guid: afb68a2442b93dc4195f49b2821d1bc5, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: e9e709cc0e874f9409ec3863a53b8e6a, type: 3}
+      m_Icon: {fileID: 2800000, guid: afb68a2442b93dc4195f49b2821d1bc5, type: 3}
       m_Width: 512
       m_Height: 512
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: afb68a2442b93dc4195f49b2821d1bc5, type: 3}
       m_Width: 256
       m_Height: 256
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: afb68a2442b93dc4195f49b2821d1bc5, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: afb68a2442b93dc4195f49b2821d1bc5, type: 3}
       m_Width: 64
       m_Height: 64
       m_Kind: 0
@@ -331,6 +331,13 @@ PlayerSettings:
       m_Icon: {fileID: 0}
       m_Width: 16
       m_Height: 16
+      m_Kind: 0
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: afb68a2442b93dc4195f49b2821d1bc5, type: 3}
+      m_Width: 128
+      m_Height: 128
       m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: iPhone

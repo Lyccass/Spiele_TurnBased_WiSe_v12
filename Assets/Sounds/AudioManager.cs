@@ -32,8 +32,8 @@ public class AudioManager : MonoBehaviour
         { "LizMap_Assasination", new string[] { "village", "boss" } },
         { "LizMap_FIndObject", new string[] { "village", "hunt" } },
         { "Hub", new string[] { "hub" } },
-        { "MainMenu - UI", new string[] { "main1" } },
-        { "Map - UI", new string[] { "main2" } },
+        { "MainMenu", new string[] { "main1" } },
+        { "Map", new string[] { "main2" } },
         { "Options", new string[] { "hub" } }
     };
 
