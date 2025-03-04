@@ -56,7 +56,7 @@ private void ShowNextMessage()
     if (currentMessageIndex < currentMessages.Count)
     {
         Debug.Log("[TutorialPopupUI] About to play 'text' UI sound");
-        AudioManager.Instance.PlayUI("text");
+        AudioManager.Instance.PlaySFX("Lever");
         popupText.text = currentMessages[currentMessageIndex];
         currentMessageIndex++;
     }
